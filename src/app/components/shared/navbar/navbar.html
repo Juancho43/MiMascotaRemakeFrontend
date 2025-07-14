@@ -1,0 +1,15 @@
+<header>
+  <nav>
+    <h1 routerLink="/">Mi Mascota</h1>
+    <ul>
+      <li routerLinkActive routerLink="/help">Ayuda</li>
+      @if (false) {
+        <li routerLinkActive routerLink="/app/profile"> Perfil</li>
+        <li routerLinkActive routerLink="/app/journals">Libretas</li>
+        <li routerLinkActive routerLink="/auth/logout"> Salir</li>
+      } @else {
+        <li routerLinkActive routerLink="auth/login"> Ingresar</li>
+      }
+    </ul>
+  </nav>
+</header>

@@ -1,1 +1,32 @@
 /* You can add global styles to this file, and also import other style files */
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Condensed:ital,wght@0,700;1,300&display=swap');
+@import url('https://fonts.googleapis.com/css?family=Poppins:400,500,600,700&display=swap');
+:root{
+  --bkg:#4A3F35;
+  --c1:#FF7D32;
+  --c2:#FFDDDD;
+  --c3:#40352b;
+  --f1:'Roboto Condensed';
+  --f2:'Poppins';
+
+}
+*{
+  padding: 0;
+  margin: 0;
+}
+body{
+  background: var(--bkg);
+  user-select: none;
+  overflow-x:hidden;
+  font-family: var(--f2), sans-serif;
+}
+a{
+  color:var(--bkg);
+  text-decoration: none;
+}
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+header{
+  height: 3rem;
+}
