@@ -1,0 +1,17 @@
+section{
+  width: 100vw;
+  height: 70vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+h2, h3{
+  text-align: center;
+  color: var(--c2);
+  font-family: var(--f2), sans-serif;
+}
+img{
+  //max-width: 80vw;
+  justify-self: center;
+}
