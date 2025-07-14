@@ -1,0 +1,44 @@
+main{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 4em;
+}
+
+.Contenedor{
+  display: flex;
+  width: 90vw;
+  height: 200px;
+  justify-content: space-around;
+  align-items: center;
+  font-family: var(--f1), sans-serif;
+  border-radius: 10px;
+  margin: 1em;
+  padding: 1em;
+
+}
+.Contenedor a,p,h2{
+  color:black;
+}
+a:hover{
+  text-decoration: none;
+}
+.Contenedor__imagen{
+  height: 150px;
+}
+
+.uno{
+  background-color: #FE9898;
+}
+.dos{
+  background-color: #B980F0;
+}
+.uno:hover{
+  background: radial-gradient(#FE9898, #FF7D32);
+}
+.dos:hover{
+
+  background: radial-gradient(#FFF, #B980F0);
+}
+

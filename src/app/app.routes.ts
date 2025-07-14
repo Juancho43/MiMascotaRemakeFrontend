@@ -32,7 +32,16 @@ export const routes: Routes = [
       ]
   },
   {
-    path: 'app/journals',
-    loadComponent: () => import('./components/journals/journal-page/journal-page'),
+    path: 'app',
+    children:[
+      {
+        path: 'journals',
+        loadComponent: () => import('./components/journals/journal-page/journal-page'),
+      }
+    ]
+  },
+  {
+    path: '**',
+    loadComponent: () => import('./components/pages/not-found/not-found'),
   }
 ];
