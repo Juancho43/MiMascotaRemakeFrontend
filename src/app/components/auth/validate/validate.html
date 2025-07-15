@@ -1,10 +1,14 @@
-<form>
-  <a routerLink="/">Volver inicio</a>
-  <legend>Valide su mail</legend>
-  <p>A su mail le llegará un correo con un código.</p>
-  <fieldset>
-    <label for="token">Ingrese su código:</label>
-    <input type="text" name="token" id="token" maxlength="8" class="token">
-    <input type="submit" name="ok" value="Validar mail">
-  </fieldset>
-</form>
+<section>
+  <form>
+    <a routerLink="/">Volver inicio</a>
+    <legend>Valide su mail</legend>
+    <p>A su mail le llegará un correo con un código.</p>
+    <fieldset>
+      <label for="mail">Ingrese su correo:</label>
+      <input type="email" name="mail" id="mail" class="mail" [(ngModel)]="email">
+      <label for="token">Ingrese su código:</label>
+      <input type="text" name="token" id="token" maxlength="8" class="token" [(ngModel)]="code">
+      <input type="submit" name="ok" value="Validar mail" (click)="validate()">
+    </fieldset>
+  </form>
+</section>

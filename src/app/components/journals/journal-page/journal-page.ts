@@ -13,7 +13,7 @@ export default class JournalPage {
   private service = inject(JournalService);
 
 
-  journalsResource = rxResource({
-    stream : () => this.service.getJournals(),
-  });
+  // journalsResource = rxResource({
+  //   stream : () => this.service.getJournals(),
+  // });
 }

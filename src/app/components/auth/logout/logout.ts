@@ -17,5 +17,6 @@ export default class Logout {
   logout()
   {
     this.session.logout();
+
   }
 }

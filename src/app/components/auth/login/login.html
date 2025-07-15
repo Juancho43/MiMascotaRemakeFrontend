@@ -1,32 +1,35 @@
-<form [formGroup]="loginForm" (ngSubmit)="submitForm()" >
-  <legend>Iniciar sesión en Mi Mascota</legend>
-  <fieldset class="Main">
-    <input
-      type="email"
-      name="mail"
-      id="mail"
-      placeholder="Mail"
-      formControlName="email"
-      required
-    >
-    <div class="contrasenia">
+<section>
+
+  <form [formGroup]="loginForm" (ngSubmit)="submitForm()" >
+    <legend>Iniciar sesión en Mi Mascota</legend>
+    <fieldset class="Main">
       <input
-        type="password"
-        name="password"
-        id="password"
-        placeholder="Contraseña"
-        formControlName="password"
+        type="email"
+        name="mail"
+        id="mail"
+        placeholder="Mail"
+        formControlName="email"
         required
       >
-<!--      <img (click)="showPassword()" />-->
+      <div class="contrasenia">
+        <input
+          type="password"
+          name="password"
+          id="password"
+          placeholder="Contraseña"
+          formControlName="password"
+          required
+        >
+  <!--      <img (click)="showPassword()" />-->
 
-    </div>
-    <input type="submit" value="Iniciar sesión" name="login">
-  </fieldset>
-  <fieldset class="Opciones">
-    <a routerLink="/auth/register">Registrarse</a>
-    <a routerLink="/auth/password">¿Olvidaste tu contraseña?</a>
-  </fieldset>
+      </div>
+      <input type="submit" value="Iniciar sesión" name="login">
+    </fieldset>
+    <fieldset class="Opciones">
+      <a routerLink="/auth/register">Registrarse</a>
+      <a routerLink="/auth/password">¿Olvidaste tu contraseña?</a>
+    </fieldset>
 
 
-</form>
+  </form>
+</section>

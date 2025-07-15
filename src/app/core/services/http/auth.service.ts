@@ -7,6 +7,7 @@ import { catchError, of, tap } from 'rxjs';
 import { authEndpoint } from '@core/endpoints/auth.endpoint';
 import { NotificationService } from '@services/utils/notification.service';
 import {LoginInterface} from '@model/auth/login.interface';
+import {RegisterInterface} from '@model/auth/register.interface';
 
 @Injectable({
   providedIn: 'root',
@@ -19,7 +20,7 @@ export class AuthService {
   login(data : LoginInterface) {
     return this.http.post<ApiResponse<{ token : string }>>(environment.api_url + authEndpoint.login, data).pipe(
       tap(() => {
-        this.notification.showSuccesNotification();
+        this.notification.showSuccesNotification('Bienvenido de nuevo');
       }),
       catchError(() => {
         this.notification.showErrorNotification();
@@ -31,11 +32,11 @@ export class AuthService {
   logout() {
     return this.http
       .post<ApiResponse<string>>(
-        environment.api_url + authEndpoint.logout,{},{}
+        environment.api_url + authEndpoint.logout,{},{context:checkToken()}
       )
       .pipe(
         tap(() => {
-          this.notification.showSuccesNotification();
+          this.notification.showSuccesNotification('Hasta luego');
         }),
         catchError(() => {
           this.notification.showErrorNotification();
@@ -50,7 +51,40 @@ export class AuthService {
       })
       .pipe(
         tap(() => {
-          this.notification.showSuccesNotification();
+          this.notification.showSuccesNotification('Contraseña actualizada correctamente');
+        }),
+        catchError(() => {
+          this.notification.showErrorNotification();
+          return of();
+        }),
+      );
+  }
+
+  register(data: RegisterInterface){
+    console.log(environment.api_url + authEndpoint.register)
+
+    return this.http.post<ApiResponse<string>>(
+      environment.api_url + authEndpoint.register, data
+    ).pipe(
+      tap(() => {
+        this.notification.showSuccesNotification("Revisa tu correo para validar tu cuenta");
+      }),
+      catchError(() => {
+        this.notification.showErrorNotification();
+        return of();
+      }),
+    );
+  }
+
+  validate(code: string, email: string) {
+    return this.http
+      .post<ApiResponse<{ token: string }>>(
+        environment.api_url + authEndpoint.validate,
+        { code, email },
+      )
+      .pipe(
+        tap(() => {
+          this.notification.showSuccesNotification('Cuenta validada correctamente');
         }),
         catchError(() => {
           this.notification.showErrorNotification();

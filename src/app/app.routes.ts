@@ -37,6 +37,7 @@ export const routes: Routes = [
   {
     path: 'app',
     canActivate:[authGuard],
+
     children:[
       {
         path: 'journals',

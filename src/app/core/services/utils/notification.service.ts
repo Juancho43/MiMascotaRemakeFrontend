@@ -14,8 +14,8 @@ export class NotificationService {
       verticalPosition: 'top',
     });
   }
-  showSuccesNotification() {
-    this.showNotification('¡Operación exitosa!', 'Cerrar', 3000);
+  showSuccesNotification(message : string = '¡Operación exitosa!') {
+    this.showNotification(message, 'Cerrar', 3000);
   }
   showErrorNotification() {
     this.showNotification('¡Hubo un error', 'Cerrar', 3000);

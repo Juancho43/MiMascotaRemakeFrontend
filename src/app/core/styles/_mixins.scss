@@ -1,0 +1,7 @@
+@mixin form-container {
+  @container page (width > 500px) {
+    form {
+      width: 450px;
+    }
+  }
+}
