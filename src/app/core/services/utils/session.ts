@@ -36,7 +36,7 @@ export class Session {
   register(registerData : RegisterInterface) {
     this.authService.register(registerData).subscribe(
       (res) => {
-        if(res.success)  this.router.navigate(['/auth/validate']);;
+        if(res.success)  this.router.navigate(['/auth/validate']);
       }
     );
   }
