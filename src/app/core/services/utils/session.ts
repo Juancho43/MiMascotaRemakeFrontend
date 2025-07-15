@@ -14,7 +14,7 @@ export class Session {
   login(loginData : LoginInterface) {
     this.authService.login(loginData).subscribe(
       (res) => {
-        this.saveToken(res.data!);
+        this.saveToken(res.data!.token);
         this.$login.set(true);
       }
     );

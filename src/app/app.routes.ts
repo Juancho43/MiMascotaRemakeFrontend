@@ -1,4 +1,5 @@
 import { Routes } from '@angular/router';
+import {authGuard} from '@core/other/auth.guard';
 
 export const routes: Routes = [
   {
@@ -15,6 +16,7 @@ export const routes: Routes = [
         {
           path: 'logout',
           loadComponent: () => import('./components/auth/logout/logout'),
+          canActivate:[authGuard]
         },
         {
           path: 'register',
@@ -27,12 +29,14 @@ export const routes: Routes = [
         {
           path: 'password',
           loadComponent: () => import('./components/auth/password-reset/password-reset'),
+          canActivate:[authGuard]
         },
 
       ]
   },
   {
     path: 'app',
+    canActivate:[authGuard],
     children:[
       {
         path: 'journals',

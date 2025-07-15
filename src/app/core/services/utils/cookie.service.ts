@@ -1,19 +1,29 @@
-import { Injectable } from '@angular/core';
-import { getCookie, removeCookie, setCookie } from 'typescript-cookie';
+import { Injectable, Inject, PLATFORM_ID } from '@angular/core';
+  import { isPlatformBrowser } from '@angular/common';
+  import { getCookie, removeCookie, setCookie } from 'typescript-cookie';
 
-@Injectable({
-  providedIn: 'root',
-})
-export class CookieService {
-  saveCookie(key: string, value: string) {
-    setCookie(key, value, { expires: 10, path: '/' });
-  }
+  @Injectable({
+    providedIn: 'root',
+  })
+  export class CookieService {
+    constructor(@Inject(PLATFORM_ID) private platformId: Object) {}
 
-  getCookie(cookie: string) {
-    return getCookie(cookie);
-  }
+    saveCookie(key: string, value: string) {
+      if (isPlatformBrowser(this.platformId)) {
+        setCookie(key, value, { expires: 10, path: '/' });
+      }
+    }
 
-  removeCookie(cookie: string) {
-    removeCookie(cookie);
+    getCookie(cookie: string) {
+      if (isPlatformBrowser(this.platformId)) {
+        return getCookie(cookie);
+      }
+      return null;
+    }
+
+    removeCookie(cookie: string) {
+      if (isPlatformBrowser(this.platformId)) {
+        removeCookie(cookie);
+      }
+    }
   }
-}

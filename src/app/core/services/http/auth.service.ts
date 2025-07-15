@@ -17,7 +17,7 @@ export class AuthService {
 
 
   login(data : LoginInterface) {
-    return this.http.post<ApiResponse<string>>(environment.api_url + authEndpoint.login, data).pipe(
+    return this.http.post<ApiResponse<{ token : string }>>(environment.api_url + authEndpoint.login, data).pipe(
       tap(() => {
         this.notification.showSuccesNotification();
       }),
@@ -31,11 +31,7 @@ export class AuthService {
   logout() {
     return this.http
       .post<ApiResponse<string>>(
-        environment.api_url + authEndpoint.logout,
-        {},
-        {
-          context: checkToken(),
-        },
+        environment.api_url + authEndpoint.logout,{},{}
       )
       .pipe(
         tap(() => {

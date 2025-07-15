@@ -1,5 +1,7 @@
-import { Component } from '@angular/core';
+import {Component, inject} from '@angular/core';
 import {RouterLink} from '@angular/router';
+import {Session} from '@services/utils/session';
+
 
 @Component({
   selector: 'app-logout',
@@ -11,4 +13,9 @@ import {RouterLink} from '@angular/router';
 })
 export default class Logout {
 
+  private session = inject(Session)
+  logout()
+  {
+    this.session.logout();
+  }
 }

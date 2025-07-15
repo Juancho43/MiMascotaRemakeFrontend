@@ -1,14 +1,16 @@
-main{
+.landing{
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   margin-bottom: 4em;
+  container-name:landing;
+  container-type: inline-size;
 }
 
 .Contenedor{
   display: flex;
-  width: 90vw;
+  width: 85dvw;
   height: 200px;
   justify-content: space-around;
   align-items: center;
@@ -42,3 +44,10 @@ a:hover{
   background: radial-gradient(#FFF, #B980F0);
 }
 
+@container landing (width >  900px) {
+
+  .Contenedor{
+    width: 70dvw;
+  }
+
+}
