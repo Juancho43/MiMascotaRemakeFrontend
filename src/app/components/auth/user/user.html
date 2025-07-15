@@ -1,0 +1,29 @@
+@let user = this.userResource.value()!.data!;
+<section>
+
+  <app-home-button/>
+
+  <div>
+    <h2 class="Titulo">Mi cuenta</h2>
+  </div>
+  <div>
+    <article class="Datos">
+      <h2 class="Titulo">Datos</h2>
+      <h2>Nombre: {{user.name}}</h2>
+      <h2>Mail: {{user.email}}</h2>
+      <h2>Télefono: {{user}}</h2>
+      <h2>Ubicación: {{user}}</h2>
+      <h2>Token: {{user}}</h2>
+
+<!--      <h2>Notificar: sí</h2>-->
+
+
+
+    </article>
+    <article class="Opciones">
+      <h2 class="Titulo">Opciones</h2>
+      <a href='<?php echo "editar-cuenta.php?id=$usuario_id";?>'>Editar cuenta</a>
+      <a href='<?php echo "eliminar-cuenta.php?id=$usuario_id";?>'>Eliminar cuenta</a>
+    </article>
+  </div>
+</section>

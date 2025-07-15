@@ -2,11 +2,11 @@ header{
   container-name: navbar;
   container-type: inline-size;
   margin-bottom: 2em;
-
+  height: auto;
 }
 
 nav{
-  height: 3rem;
+  height: auto;
   display: flex;
   flex-direction: row;
   background-color: var(--c1);
@@ -24,6 +24,7 @@ nav{
     }
   }
   ul{
+    height: auto;
     list-style: none;
     display: flex;
     li{
@@ -61,8 +62,14 @@ nav{
 
 /* When the container is greater than 60 characters... */
 @container navbar (width < 600px) {
-  /* Change the flex direction of the .child element. */
+
   nav{
+    height: 4em;
+    padding: 1em;
+  }
+  /* Change the flex direction of the .child element. */
+  ul,nav,header{
+    height: auto;
     flex-direction: column;
     align-items: center;
     justify-content: center;
@@ -70,4 +77,13 @@ nav{
   }
 }
 
-
+//
+//@media screen and (max-width: 600px) {
+//
+//  nav{
+//    flex-direction: column;
+//    align-items: center;
+//    justify-content: center;
+//    height: 4em;
+//  }
+//}

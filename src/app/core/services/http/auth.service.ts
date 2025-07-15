@@ -8,6 +8,7 @@ import { authEndpoint } from '@core/endpoints/auth.endpoint';
 import { NotificationService } from '@services/utils/notification.service';
 import {LoginInterface} from '@model/auth/login.interface';
 import {RegisterInterface} from '@model/auth/register.interface';
+import {User} from '@model/auth/User';
 
 @Injectable({
   providedIn: 'root',
@@ -91,6 +92,17 @@ export class AuthService {
           return of();
         }),
       );
+  }
+
+  getUser(){
+    return this.http.get<ApiResponse<User>>(environment.api_url + authEndpoint.user, {
+      context: checkToken(),
+    }).pipe(
+      catchError(() => {
+        this.notification.showErrorNotification();
+        return of();
+      }),
+    );
   }
 
 }

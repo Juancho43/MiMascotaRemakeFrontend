@@ -4,4 +4,5 @@ export const authEndpoint = {
   logout: '/user/logout',
   validate: '/user/validate',
   passwordReset: '/user/password',
+  user: '/user',
 };

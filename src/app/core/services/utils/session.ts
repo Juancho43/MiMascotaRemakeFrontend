@@ -4,6 +4,7 @@ import {AuthService} from '@http/auth.service';
 import {LoginInterface} from '@model/auth/login.interface';
 import {Router} from '@angular/router';
 import {RegisterInterface} from '@model/auth/register.interface';
+import {User} from '@model/auth/User';
 
 
 @Injectable({
@@ -47,6 +48,8 @@ export class Session {
       }
     );
   }
+
+
 
   private initializeSession(token : string) {
     this.saveToken(token);
