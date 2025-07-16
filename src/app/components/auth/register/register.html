@@ -41,6 +41,8 @@
   <!--    <select name="localidad" id="localidad" required>-->
   <!--    </select>-->
 
+      <label for="ubicacion">Ubicación</label>
+      <app-location-picker (coordinatesSelected)="onLocationSelected($event)"/>
 
       <button type="submit">Registrarse</button>
     </fieldset>

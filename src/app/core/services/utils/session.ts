@@ -1,9 +1,9 @@
 import {inject, Injectable, signal} from '@angular/core';
 import {CookieService} from '@services/utils/cookie.service';
 import {AuthService} from '@http/auth.service';
-import {LoginInterface} from '@model/auth/login.interface';
+import {LoginData} from '@model/auth/LoginData';
 import {Router} from '@angular/router';
-import {RegisterInterface} from '@model/auth/register.interface';
+import {RegisterData} from '@model/auth/RegisterData';
 import {User} from '@model/auth/User';
 
 
@@ -16,7 +16,7 @@ export class Session {
   private router = inject(Router);
   $login = this.isLoggedIn();
 
-  login(loginData : LoginInterface) {
+  login(loginData : LoginData) {
     this.authService.login(loginData).subscribe(
       (res) => {
         this.initializeSession(res.data!.token);
@@ -34,7 +34,7 @@ export class Session {
     );
   }
 
-  register(registerData : RegisterInterface) {
+  register(registerData : RegisterData) {
     this.authService.register(registerData).subscribe(
       (res) => {
         if(res.success)  this.router.navigate(['/auth/validate']);

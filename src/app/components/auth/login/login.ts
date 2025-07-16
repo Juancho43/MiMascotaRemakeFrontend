@@ -2,7 +2,7 @@ import {Component, inject} from '@angular/core';
 import {RouterLink} from '@angular/router';
 import {Session} from '@services/utils/session';
 import {FormControl, FormGroup, ReactiveFormsModule, Validators} from '@angular/forms';
-import {LoginInterface} from '@model/auth/login.interface';
+import {LoginData} from '@model/auth/LoginData';
 
 
 @Component({
@@ -26,7 +26,7 @@ export default class Login {
     this.service.login(this.getLoginData());
   }
 
-  getLoginData(): LoginInterface{
+  getLoginData(): LoginData{
     return {
       email: this.loginForm.get('email')?.value || '',
       password: this.loginForm.get('password')?.value || ''

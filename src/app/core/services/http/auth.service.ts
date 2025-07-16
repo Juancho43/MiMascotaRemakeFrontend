@@ -6,8 +6,8 @@ import { checkToken } from '@core/other/token.interceptor';
 import { catchError, of, tap } from 'rxjs';
 import { authEndpoint } from '@core/endpoints/auth.endpoint';
 import { NotificationService } from '@services/utils/notification.service';
-import {LoginInterface} from '@model/auth/login.interface';
-import {RegisterInterface} from '@model/auth/register.interface';
+import {LoginData} from '@model/auth/LoginData';
+import {RegisterData} from '@model/auth/RegisterData';
 import {User} from '@model/auth/User';
 
 @Injectable({
@@ -18,7 +18,7 @@ export class AuthService {
   private notification = inject(NotificationService);
 
 
-  login(data : LoginInterface) {
+  login(data : LoginData) {
     return this.http.post<ApiResponse<{ token : string }>>(environment.api_url + authEndpoint.login, data).pipe(
       tap(() => {
         this.notification.showSuccesNotification('Bienvenido de nuevo');
@@ -61,7 +61,7 @@ export class AuthService {
       );
   }
 
-  register(data: RegisterInterface){
+  register(data: RegisterData){
     console.log(environment.api_url + authEndpoint.register)
 
     return this.http.post<ApiResponse<string>>(
