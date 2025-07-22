@@ -1,0 +1,8 @@
+@let list = journalsResource.value()!.data!;
+<div>
+  @for (journal of list; track $index){
+    <app-journal-card
+      [journal]="journal"
+    />
+  }
+</div>

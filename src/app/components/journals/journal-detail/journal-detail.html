@@ -1,0 +1,45 @@
+@if (!this.journalResource.isLoading()) {
+
+@let animal = this.journalResource.value()!.data!;
+<div class="Main">
+  <h2 class="Titulo">Datos</h2>
+  <article class="Registro">
+
+    <p>Nombre: {{animal.name}}</p>
+    <p>Descripción: {{animal.description}}</p>
+    <p>Fecha de nacimiento: {{animal.birthdate | date}}</p>
+    <p>Raza: {{animal.breed}}</p>
+    <p>Peso: {{animal.weight}} kg</p>
+    <p>Color: {{animal.color}}</p>
+    <p>Tamaño: {{animal.size}}</p>
+    @if (animal.gender == "male") {
+      <p>Sexo: Macho</p>
+    } @else if (animal.gender == "female"){
+      <p>Sexo: Hembra</p>
+    }
+
+
+  </article>
+<!--  <article class="Foro">-->
+<!--    <?php if(mysqli_num_rows($query) >0): ?>-->
+<!--    <?php while($foro = mysqli_fetch_assoc($query)):?>-->
+<!--    <a href="../foros/ver-publicacion.php?f=<?= $foro["foro"]?>&idf=<?=$foro["idforo"]?>">Ver publicación en foro <?=$foro["foro"] ?></a>-->
+<!--    <?php endwhile; ?>-->
+<!--    <?php endif; ?>-->
+<!--  </article>-->
+<!--  <article class="Foto">-->
+<!--    <h2 class="Titulo">Foto</h2>-->
+<!--    <?php if($results['ruta'] == ""):?>-->
+<!--    <img src='img/muestra.png' alt='Imagén de muestra'>-->
+<!--    <a href='formulario-foto.php?id=<?=$results["idlibreta"]?>&n=<?=$results["nombre"]?>'>Añadir foto</a>-->
+<!--    <?php else: ?>-->
+<!--    <img src='<?=$results["ruta"];?>' alt='<?=$results["descripcion"];?>'>-->
+<!--    <a href='editar-foto.php?id=<?=$results["idlibreta"]?>&n=<?=$results["nombre"]?>'>Cambiar foto</a>-->
+<!--    <a href='eliminar-foto.php?id=<?=$results["idlibreta"]?>'>Eliminar foto</a>-->
+<!--    <?php endif;?>-->
+<!--  </article>-->
+
+
+
+</div>
+}

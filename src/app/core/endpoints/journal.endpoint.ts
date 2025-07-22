@@ -1,5 +1,6 @@
 export const journalEndpoint = {
   'getJournals': '/journals',
-  'getJournal': (id: string) => `/journals/${id}`,
-  'getEntries': (id: string, page:string) => `/journals/${id}/entries/${page}`,
+  'getJournal':'/journal/:id',
+  'getEntries': '/journal/:id/entries/:page',
+  'createJournal': '/journal/create',
 }

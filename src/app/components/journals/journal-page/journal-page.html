@@ -1,3 +1,25 @@
-<!--@let journal = journalsResource.value();-->
-<!--<p>journal-page works!</p>-->
-<!--{{journal}}-->
+
+
+  <h3 class="Contenedor__subtitulo">Libretas: </h3>
+  <div class="Opciones">
+    <app-button
+      route="new"
+      icon="assets/plus.svg"
+    />
+    <app-button
+      route="all"
+      icon="assets/view-grid.svg"
+      label="Ver libretas"
+    />
+    <app-button
+      route="trash"
+      icon="assets/trash.svg"
+      label="Papelera"
+    />
+  </div>
+
+  <section>
+
+  <router-outlet/>
+  </section>
+

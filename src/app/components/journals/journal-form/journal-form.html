@@ -1,0 +1,67 @@
+<form [formGroup]="journalForm" (ngSubmit)="onSubmit()">
+  <fieldset>
+    <legend>Nueva libreta.</legend>
+    <label for="name">Nombre:</label>
+    <input
+      type="text"
+      id="name"
+      formControlName="name"
+      placeholder="Nombre de mi mascota."
+    />
+    <label for="description" >Descripcion</label>
+    <textarea
+      id="description"
+      formControlName="description"
+      placeholder="Descripción de mi mascota."
+    >
+    </textarea>
+    <label for="color">Color:</label>
+    <input
+      type="text"
+      id="color"
+      formControlName="color"
+      placeholder="Color de mi mascota."
+    />
+    <label for="gender">Sexo</label>
+    <select
+      id="gender"
+      formControlName="gender"
+    >
+      <option value="male">Macho</option>
+      <option value="female">Hembra</option>
+    </select>
+    <label for="birthdate">Cumpleaños</label>
+    <input
+      type="date"
+           id="birthdate"
+           formControlName="birthdate"
+    >
+    <label for="size">Tamaño</label>
+    <select
+      id="size"
+      formControlName="size"
+    >
+      <option value="extra-small">Diminuto</option>
+      <option value="small">Pequeño</option>
+      <option value="medium">Mediano</option>
+      <option value="large">Grande</option>
+      <option value="extra-large">Enorme</option>
+    </select>
+    <label for="breed">Raza</label>
+    <input
+      type="text"
+      id="breed"
+      formControlName="breed"
+      placeholder="Raza de mi mascota."
+    >
+    <label for="weight">Peso</label>
+    <input
+      type="number"
+      id="weight"
+      formControlName="weight"
+    />
+
+    <button type="submit" >Cargar libreta</button>
+  </fieldset>
+  <p class='alerta'>* Los campos son obligatorios.</p>
+</form>

@@ -9,6 +9,13 @@
         placeholder="Tu nombre"
         formControlName="name"
       >
+      <label for="telefono">*Teléfono</label>
+      <input
+        type="tel"
+        id="telefono"
+        placeholder="Tu teléfono"
+        formControlName="phone"
+      />
       <label for="mail">*Mail</label>
       <input
         type="email"
@@ -24,22 +31,6 @@
       >
 <!--      <label for="clavedos">*Repetir contraseña</label>-->
 <!--      <input type="password" name="clavedos" id="clavedos" placeholder="Repetir tu contraseña" required>-->
-<!--      <label for="tell">Télefono</label>-->
-<!--      <input type="text" name="tell" id="tell" placeholder="Tu télefono">-->
-  <!--    <label for="provincia">*Provincia</label>-->
-  <!--    <select name="provincia" id="provincia" onchange="city(this.value);" required>-->
-  <!--      <?php-->
-  <!--                $sql = "SELECT * FROM provincias";-->
-  <!--                $query = mysqli_query($link,$sql);-->
-  <!--                while($rows = mysqli_fetch_assoc($query))-->
-  <!--                {-->
-  <!--                    echo "<option value='$rows[id]'>$rows[provincia]</option>";-->
-  <!--      }-->
-  <!--      ?>-->
-  <!--    </select>-->
-  <!--    <label for="localidad">*Localidad</label>-->
-  <!--    <select name="localidad" id="localidad" required>-->
-  <!--    </select>-->
 
       <label for="ubicacion">Ubicación</label>
       <app-location-picker (coordinatesSelected)="onLocationSelected($event)"/>

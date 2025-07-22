@@ -1,5 +1,5 @@
 import { ApplicationConfig, provideBrowserGlobalErrorListeners, provideZoneChangeDetection, isDevMode } from '@angular/core';
-import {provideRouter, withComponentInputBinding} from '@angular/router';
+import {provideRouter, withComponentInputBinding, withRouterConfig} from '@angular/router';
 
 import { routes } from './app.routes';
 import { provideClientHydration, withEventReplay } from '@angular/platform-browser';
@@ -12,10 +12,20 @@ export const appConfig: ApplicationConfig = {
   providers: [
     provideBrowserGlobalErrorListeners(),
     provideZoneChangeDetection({ eventCoalescing: true }),
-    provideRouter(routes, withComponentInputBinding()), provideClientHydration(withEventReplay()),
+    provideRouter(
+      routes,
+      withComponentInputBinding(),
+      withRouterConfig({
+        urlUpdateStrategy:"deferred",
+        onSameUrlNavigation: 'reload'
+      }),
+
+    ),
+    provideClientHydration(withEventReplay()),
     provideHttpClient(withFetch(),withInterceptors([tokenInterceptor, loaderInterceptor])), provideServiceWorker('ngsw-worker.js', {
             enabled: !isDevMode(),
             registrationStrategy: 'registerWhenStable:30000'
           }),
+
   ]
 };

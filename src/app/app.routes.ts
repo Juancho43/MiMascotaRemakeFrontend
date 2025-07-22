@@ -48,6 +48,21 @@ export const routes: Routes = [
       {
         path: 'journals',
         loadComponent: () => import('./components/journals/journal-page/journal-page'),
+        children: [
+            {
+              path: 'all',
+              loadComponent: () => import('./components/journals/journal-list/journal-list'),
+            },
+            {
+              path: 'new',
+              loadComponent: () => import('./components/journals/journal-form/journal-form'),
+            },
+
+            {
+              path: ':id',
+              loadComponent: () => import('./components/journals/journal-detail/journal-detail'),
+            }
+          ]
       }
     ]
   },

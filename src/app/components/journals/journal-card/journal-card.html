@@ -1,0 +1,27 @@
+
+<div
+  [routerLink]="['/app/journals/', journal().journalId!]"
+  class="journal-card"
+>
+  @if (journal().path) {
+    <img
+      [ngSrc]="journal().path!"
+      alt="{{journal().name}} image"
+      class="journal-image"
+      width="100"
+      height="150"
+    >
+  }@else{
+    <img
+      ngSrc="assets/photo_upload.svg"
+      alt="Add photo"
+      class="journal-image"
+      width="100"
+      height="150"
+    >
+  }
+
+
+
+  <h3>{{journal().name}}</h3>
+</div>

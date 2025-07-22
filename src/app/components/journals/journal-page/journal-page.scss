@@ -1,0 +1,13 @@
+@use '../../../core/styles/mixins' as *;
+section{
+  container-name:page;
+  container-type: inline-size;
+  @include form-container;
+  padding: 1em;
+}
+.Opciones{
+  display: flex;
+  width: 90dvw;
+  justify-content: center;
+  gap:1em;
+}

@@ -1,0 +1,13 @@
+<button [routerLink]="route()">
+  @if(icon()){
+    <img
+      [ngSrc]="icon()!"
+      alt="Button icon"
+      height="40"
+      width="40"
+    />
+  }
+  @if(label()){
+    {{label()}}
+  }
+</button>
