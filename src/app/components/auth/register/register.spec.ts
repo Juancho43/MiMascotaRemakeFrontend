@@ -1,6 +1,8 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import {ComponentFixture, TestBed} from '@angular/core/testing';
 
-import { Register } from './register';
+import Register from './register';
+import {ActivatedRoute} from '@angular/router';
+import {HttpClientTestingModule} from '@angular/common/http/testing';
 
 describe('Register', () => {
   let component: Register;
@@ -8,7 +10,18 @@ describe('Register', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [Register]
+      imports: [Register,HttpClientTestingModule],
+      providers: [
+        {
+          provide: ActivatedRoute,
+          useValue: {
+            snapshot: {
+              queryParams: {}
+            }
+          }
+        }
+      ]
+
     })
     .compileComponents();
 

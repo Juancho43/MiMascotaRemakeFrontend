@@ -1,11 +1,10 @@
 import {Component} from '@angular/core';
-import {RouterLink, RouterOutlet} from '@angular/router';
+import {RouterOutlet} from '@angular/router';
 import {Button} from '@app/components/shared/button/button';
 
 @Component({
   selector: 'app-journal-page',
   imports: [
-    RouterLink,
     RouterOutlet,
     Button,
 

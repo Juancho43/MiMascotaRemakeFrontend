@@ -57,10 +57,28 @@ export const routes: Routes = [
               path: 'new',
               loadComponent: () => import('./components/journals/journal-form/journal-form'),
             },
-
             {
               path: ':id',
-              loadComponent: () => import('./components/journals/journal-detail/journal-detail'),
+              loadComponent: () => import('./components/journals/journal-view/journal-view'),
+
+              children:[
+                {
+                  path: 'view',
+                  loadComponent: () => import('./components/journals/journal-detail/journal-detail'),
+                },
+                {
+                  path: 'entries/new',
+                  loadComponent: () => import('./components/entries/entry-form/entry-form'),
+                },
+                {
+                  path:'image',
+                  loadComponent: () => import('./components/journals/animal-image-form/animal-image-form').then( m => m.AnimalImageForm),
+                },
+                {
+                  path: 'edit',
+                  loadComponent: () => import('./components/journals/journal-form/journal-form'),
+                },
+              ]
             }
           ]
       }

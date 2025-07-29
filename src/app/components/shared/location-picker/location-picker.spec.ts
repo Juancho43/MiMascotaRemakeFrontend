@@ -1,6 +1,6 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import {ComponentFixture, TestBed} from '@angular/core/testing';
 
-import { LocationPicker } from './location-picker';
+import {LocationPicker} from './location-picker';
 
 describe('LocationPicker', () => {
   let component: LocationPicker;

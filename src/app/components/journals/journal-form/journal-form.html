@@ -1,6 +1,11 @@
+@let edit = this.edit();
 <form [formGroup]="journalForm" (ngSubmit)="onSubmit()">
   <fieldset>
-    <legend>Nueva libreta.</legend>
+    @if(!edit){
+      <legend>Nueva libreta.</legend>
+    }@else{
+      <legend>Editar libreta.</legend>
+    }
     <label for="name">Nombre:</label>
     <input
       type="text"
@@ -58,10 +63,14 @@
     <input
       type="number"
       id="weight"
+
       formControlName="weight"
     />
-
-    <button type="submit" >Cargar libreta</button>
+    @if (!edit){
+      <button type="submit" >Cargar libreta</button>
+    } @else {
+      <button type="submit" >Editar libreta</button>
+    }
   </fieldset>
   <p class='alerta'>* Los campos son obligatorios.</p>
 </form>

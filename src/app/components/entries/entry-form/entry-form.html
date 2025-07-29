@@ -1,0 +1,31 @@
+<form [formGroup]="entryForm" (ngSubmit)="onSubmit()">
+  <fieldset>
+    <legend>Nuevo registro</legend>
+    <label for="fecha">*Fecha</label>
+    <input
+      type="date"
+      id="fecha"
+      formControlName="date"
+      >
+    <label for="evento">*Evento</label>
+    <input
+      type="text"
+      id="evento"
+      required maxlength= "50"
+      placeholder="Ejemplo: desparacitación."
+      formControlName="title"
+    >
+    <label for="descripcion">*Descripcion</label>
+    <textarea
+      id="descripcion"
+      cols="30"
+      rows="10"
+      maxlength="255"
+      placeholder="Ejemplo: Peso:20kg."
+      formControlName="content"
+    >
+    </textarea>
+    <button type="submit">Cargar registro</button>
+  </fieldset>
+  <p class='alerta'>* Los campos son obligatorios.</p>
+</form>

@@ -1,21 +1,28 @@
-import {Component, inject, input} from '@angular/core';
-import { JournalService } from '@app/core/services/http/journal-service';
+import {Component, inject, input, signal} from '@angular/core';
+import {JournalService} from '@app/core/services/http/journal-service';
 import {rxResource} from '@angular/core/rxjs-interop';
-import {DatePipe, JsonPipe} from '@angular/common';
+import {DatePipe, NgOptimizedImage} from '@angular/common';
+
+import {JournalContextService} from '@services/utils/journal-context-service';
+import {environment} from '@environments/environment';
 
 @Component({
   selector: 'app-journal-detail',
   imports: [
-    DatePipe
+    DatePipe,
+    NgOptimizedImage
   ],
   templateUrl: './journal-detail.html',
   styleUrl: './journal-detail.scss'
 })
 export default class JournalDetail {
-  readonly id = input.required<string>();
+  private context = inject(JournalContextService);
   private service = inject(JournalService);
-  journalResource = rxResource({
-    params: () => ({id: this.id()}),
-    stream: ({params}) => this.service.getJournal(params.id),
-  });
+  journal =this.context.getJournal();
+  animalImagesResource = rxResource({
+    params: () => ({id: this.journal()!.id!}),
+    stream: ({params}) => this.service.getAnimalImages(params.id),
+  })
+
+  protected readonly environment = environment;
 }

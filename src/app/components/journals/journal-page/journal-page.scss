@@ -1,13 +1,10 @@
 @use '../../../core/styles/mixins' as *;
+@use '../../../core/styles/menus' as menu;
 section{
   container-name:page;
   container-type: inline-size;
-  @include form-container;
-  padding: 1em;
-}
-.Opciones{
-  display: flex;
-  width: 90dvw;
   justify-content: center;
-  gap:1em;
+  width: 100dvw;
+  @include flex-column;
+  @include form-container;
 }

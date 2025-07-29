@@ -1,11 +1,9 @@
-import { Component } from '@angular/core';
-import {RouterLink} from '@angular/router';
+import {Component} from '@angular/core';
 import {Button} from '@app/components/shared/button/button';
 
 @Component({
   selector: 'app-home-button',
   imports: [
-    RouterLink,
     Button
   ],
   templateUrl: './home-button.html',

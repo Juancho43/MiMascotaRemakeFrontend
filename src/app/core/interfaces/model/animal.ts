@@ -11,6 +11,6 @@ export interface Animal extends Entity {
   weight?: number;
   breed?: string;
   size?: 'extra-small' | 'small' | 'medium' | 'large' | 'extra-large';
-  journalId?: number;
+  journal_id?: string;
   path?:string;
 }

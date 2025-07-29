@@ -1,48 +1,31 @@
-section{
-  display: flex;
-  flex-direction: column;
-  padding: 1em;
-  margin-bottom: 1em;
-  background-color: rgba(255, 255, 255, 80%);
-  border-radius: 5px;
-}
+@use '../../../core/styles/menus';
+@use '../../../core/styles/mixins';
+
 
 article{
-  display: flex;
-  flex-direction: column;
+  @include mixins.flex-column;
   align-items: center;
+  justify-content: center;
   min-height: 3em;
+  width: 100%;
 
 }
 
-div{
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  padding-bottom: 1em;
-}
 
-img{
-  max-width: 200px;
-  max-height: 400px;
+img {
+  max-width: 30%;
   margin: 5px;
   border-radius: 5px;
-}
-
-div.Opciones{
-  flex-direction: row;
-  justify-content: space-around;
-
+  height: auto;
 }
 
 article.Registro{
-  width: 100vw;
-  align-items: baseline;
   border-bottom: 3px dashed var(--c3);
   margin-bottom: 10px;
+  align-items: start;
 
 }
-article.Registro p{
+article.Registro p, .Titulo{  color:black;
   margin-left: 7px;
 }
 article.Registro a{
@@ -52,9 +35,41 @@ article.Registro a{
   border-radius: 5px;
   align-self: center;
 }
+article.Foto{
+  .Foto__container{
+    @include mixins.flex-row;
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    width: 100%;
+  }
+}
+
 article.Foto a::before{
   content: "#";
   color: var(--c1);
 }
 
 
+.Main{
+ @include mixins.flex-column;
+  border-radius: 5px;
+  background-color: rgba(255, 255, 255, 80%);
+  margin: auto;
+  justify-content: center;
+  container-name: main;
+  container-type: inline-size;
+  width: 90dvw;
+}
+
+@container main (width < 400px) {
+  article {
+    width: 90dvw;
+  }
+
+}
+@media screen and (width > 700px) {
+  .Main {
+    width: 60dvw;
+  }
+
+}

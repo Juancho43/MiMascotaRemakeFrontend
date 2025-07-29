@@ -9,6 +9,8 @@ import {NotificationService} from '@services/utils/notification.service';
 import {ApiResponseCollection} from '@model/ApiResponseCollection';
 import {Animal} from '@model/model/animal';
 import {ApiResponse} from '@model/ApiResponse';
+import {animalEndpoint} from '@core/endpoints/animal.endpoint';
+import {ImagesResponse} from '@model/model/ImagesResponse';
 
 @Injectable({
   providedIn: 'root'
@@ -30,10 +32,30 @@ export class JournalService {
     );
   }
   postJournal(data: Journal) {
-    return this.http.post(environment.api_url+journalEndpoint.createJournal, data.animal, {context: checkToken()}).pipe(
+    return this.http.post<ApiResponse<Animal>>(environment.api_url+journalEndpoint.createJournal, data.animal, {context: checkToken()}).pipe(
       tap(() => {
         this.notification.showSuccesNotification('Libreta creada correctamente');
       }),
+      catchError(() => {
+        this.notification.showErrorNotification();
+        return of();
+      }),
+    );
+  }
+
+  putJournal(data: Journal) {
+    return this.http.put<ApiResponse<Animal>>(environment.api_url+journalEndpoint.updateJournal, data.animal, {context: checkToken()}).pipe(
+      tap(() => {
+        this.notification.showSuccesNotification('Libreta actualizada correctamente');
+      }),
+      catchError(() => {
+        this.notification.showErrorNotification();
+        return of();
+      }),
+    );
+  }
+  getAnimalImages(animalId: string) {
+    return this.http.get<ApiResponse<ImagesResponse>>(environment.api_url + animalEndpoint.images.replace(':id', animalId), {context: checkToken()}).pipe(
       catchError(() => {
         this.notification.showErrorNotification();
         return of();

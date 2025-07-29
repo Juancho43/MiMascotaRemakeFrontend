@@ -1,8 +1,12 @@
 @let list = journalsResource.value()!.data!;
-<div>
-  @for (journal of list; track $index){
-    <app-journal-card
-      [journal]="journal"
-    />
-  }
-</div>
+@if (list !== undefined ){
+  <div>
+    @for (journal of list; track $index){
+      <app-journal-card
+        [journal]="journal"
+      />
+    } @empty {
+      No hay libretas.
+    }
+  </div>
+}

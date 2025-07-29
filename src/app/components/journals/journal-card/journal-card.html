@@ -1,11 +1,11 @@
-
 <div
-  [routerLink]="['/app/journals/', journal().journalId!]"
+  [routerLink]="['/app/journals/', journal().journal_id!, 'view']"
   class="journal-card"
 >
+  <h3>{{journal().name}}</h3>
   @if (journal().path) {
     <img
-      [ngSrc]="journal().path!"
+      [ngSrc]=" environment.public_url+ '/'+journal().path!"
       alt="{{journal().name}} image"
       class="journal-image"
       width="100"
@@ -23,5 +23,5 @@
 
 
 
-  <h3>{{journal().name}}</h3>
+
 </div>

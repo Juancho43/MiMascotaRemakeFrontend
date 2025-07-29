@@ -1,6 +1,9 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import {ComponentFixture, TestBed} from '@angular/core/testing';
 
-import { Logout } from './logout';
+import Logout from './logout';
+import Login from '@app/components/auth/login/login';
+import {HttpClientTestingModule} from '@angular/common/http/testing';
+import {ActivatedRoute} from '@angular/router';
 
 describe('Logout', () => {
   let component: Logout;
@@ -8,11 +11,12 @@ describe('Logout', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [Logout]
+      imports: [Logout,HttpClientTestingModule],
+      providers: [
+        { provide: ActivatedRoute, useValue: { snapshot: {}, params: {} } }
+      ]
     })
-    .compileComponents();
-
-    fixture = TestBed.createComponent(Logout);
+      .compileComponents();    fixture = TestBed.createComponent(Logout);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

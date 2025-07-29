@@ -1,6 +1,7 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import {ComponentFixture, TestBed} from '@angular/core/testing';
 
-import { HomeButton } from './home-button';
+import {HomeButton} from './home-button';
+import {ActivatedRoute} from '@angular/router';
 
 describe('HomeButton', () => {
   let component: HomeButton;
@@ -8,7 +9,17 @@ describe('HomeButton', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [HomeButton]
+      imports: [HomeButton],
+      providers:[
+        {
+          provide: ActivatedRoute,
+          useValue: {
+           snapshot: {
+              queryParams: {}
+            }
+          }
+        }
+      ]
     })
     .compileComponents();
 

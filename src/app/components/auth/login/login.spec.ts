@@ -1,6 +1,9 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import {ComponentFixture, TestBed} from '@angular/core/testing';
 
-import { Login } from './login';
+import Login from './login';
+import {HttpClientTestingModule, provideHttpClientTesting} from '@angular/common/http/testing';
+import {HttpClient} from '@angular/common/http';
+import {ActivatedRoute} from '@angular/router';
 
 describe('Login', () => {
   let component: Login;
@@ -8,7 +11,10 @@ describe('Login', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [Login]
+      imports: [Login,HttpClientTestingModule],
+      providers: [
+        { provide: ActivatedRoute, useValue: { snapshot: {}, params: {} } }
+      ]
     })
     .compileComponents();
 

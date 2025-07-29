@@ -1,3 +1,4 @@
+@use "../../../core/styles/mixins";
 header{
   container-name: navbar;
   container-type: inline-size;
@@ -7,8 +8,7 @@ header{
 
 nav{
   height: auto;
-  display: flex;
-  flex-direction: row;
+  @include mixins.flex-row;
   background-color: var(--c1);
   padding: 0 5%;
   font-family: var(--f2), sans-serif;
@@ -45,16 +45,6 @@ nav{
   }
 
 }
-
-//.parent {
-//  container-name: hero-banner;
-//  container-type: inline-size;
-//
-//  /* or container: hero-banner / inline-size; */
-//}
-//
-//}
-
 .child {
   display: flex;
   flex-direction: column;
@@ -76,14 +66,3 @@ nav{
 
   }
 }
-
-//
-//@media screen and (max-width: 600px) {
-//
-//  nav{
-//    flex-direction: column;
-//    align-items: center;
-//    justify-content: center;
-//    height: 4em;
-//  }
-//}

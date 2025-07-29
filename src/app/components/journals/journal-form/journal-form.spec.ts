@@ -1,6 +1,7 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import {ComponentFixture, TestBed} from '@angular/core/testing';
 
-import { JournalForm } from './journal-form';
+import JournalForm from './journal-form';
+import {provideHttpClient} from '@angular/common/http';
 
 describe('JournalForm', () => {
   let component: JournalForm;
@@ -8,7 +9,10 @@ describe('JournalForm', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [JournalForm]
+      imports: [JournalForm],
+      providers:[
+        provideHttpClient()
+      ]
     })
     .compileComponents();
 

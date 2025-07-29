@@ -6,4 +6,5 @@ export interface Entry extends Entity {
   content: string;
   date: Date;
   journal?: Journal;
+  journal_id?: string;
 }

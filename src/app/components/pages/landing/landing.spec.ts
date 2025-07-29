@@ -1,6 +1,7 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import {ComponentFixture, TestBed} from '@angular/core/testing';
 
-import { Landing } from './landing';
+import Landing from './landing';
+import {ActivatedRoute} from '@angular/router';
 
 describe('Landing', () => {
   let component: Landing;
@@ -8,7 +9,10 @@ describe('Landing', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [Landing]
+      imports: [Landing],
+      providers: [
+        { provide: ActivatedRoute, useValue: {} }
+      ]
     })
     .compileComponents();
 

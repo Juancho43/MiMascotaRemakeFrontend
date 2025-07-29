@@ -1,4 +1,9 @@
-@let user = this.userResource.value()!.data!;
+
+
+@let user = this.userResource.value()!.data;
+@if (user != undefined) {
+
+
 <section>
 
   <app-home-button/>
@@ -26,3 +31,4 @@
     </article>
   </div>
 </section>
+}

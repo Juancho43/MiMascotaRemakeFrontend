@@ -1,0 +1,20 @@
+@use 'mixins';
+
+.menu{
+  @include mixins.flex-row();
+  background-color: var(--color-bg);
+  box-shadow: var(--shadow-elevation-2dp);
+  overflow-y: auto;
+  margin: 1em;
+  width: 90%;
+  overflow-x: auto;
+  justify-content: center;
+  gap:1em;
+  &.menu--hidden {
+    display: none;
+  }
+
+  &.menu--visible {
+    display: block;
+  }
+}
