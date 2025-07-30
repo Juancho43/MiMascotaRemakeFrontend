@@ -63,4 +63,13 @@ export class JournalService {
     );
   }
 
+  getEntries(journalId: string, page : int) {
+    const url = environment.api_url + journalEndpoint.getEntries.replace(':id', journalId).replace(':page', page.toString());
+    return this.http.get<ApiResponseCollection<Journal>>(environment.api_url + journalEndpoint.getEntries.replace(':id', journalId) + `?page=${page}`, {context: checkToken()}).pipe(
+      catchError(() => {
+        this.notification.showErrorNotification();
+        return of();
+      }),
+    );
+  }
 }
