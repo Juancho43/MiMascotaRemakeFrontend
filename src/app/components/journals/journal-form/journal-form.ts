@@ -4,6 +4,7 @@ import {JournalService} from '@http/journal-service';
 import {Journal} from '@model/model/journal';
 import {Router} from '@angular/router';
 import {JournalContextService} from '@services/utils/journal-context-service';
+import {formatDate} from '@angular/common';
 
 @Component({
   selector: 'app-journal-form',
@@ -24,7 +25,7 @@ export default class JournalForm  implements OnInit {
     description: new FormControl(''),
     color: new FormControl(''),
     gender: new FormControl(<'male'|'female'>'male'),
-    birthdate : new FormControl(<Date|null> null),
+    birthdate : new FormControl(<string|null> null),
     size: new FormControl(<'extra-small' | 'small' | 'medium' | 'large' | 'extra-large'>'medium'),
     breed: new FormControl(''),
     weight: new FormControl(0),
@@ -38,20 +39,23 @@ export default class JournalForm  implements OnInit {
   }
   setForm(){
     let journal = this.journalContext.getJournal();
+    if (journal) {
+
     let animal = journal()!.animal;
-    if (animal) {
+    console.log(journal());
       this.journalForm.patchValue({
         name: animal.name,
         description: animal.description,
         color: animal.color,
         gender: animal.gender,
-        birthdate: animal.birthdate || new Date(),
         size: animal.size || 'medium',
         breed: animal.breed || '',
         weight:animal.weight || 0,
         journal_id: journal()!.id! ,
+        birthdate: animal.birthdate!
       })
     }
+
 
   }
   onSubmit() {
@@ -74,7 +78,7 @@ export default class JournalForm  implements OnInit {
         description: this.journalForm.get('description')?.value || '',
         color: this.journalForm.get('color')?.value || '',
         gender: this.journalForm.get('gender')?.value || "male",
-        birthdate: this.journalForm.get('birthdate')?.value || new Date(),
+        birthdate: this.journalForm.get('birthdate')?.value!,
         size: this.journalForm.get('size')?.value || "medium",
         weight: this.journalForm.get('weight')?.value || 0,
         breed: this.journalForm.get('breed')?.value || '',

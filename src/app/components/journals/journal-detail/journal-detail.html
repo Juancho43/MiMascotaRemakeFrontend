@@ -18,13 +18,8 @@
     <p>Raza: {{animal.breed}}</p>
     <p>Peso: {{animal.weight}} kg</p>
     <p>Color: {{animal.color}}</p>
-    <p>Tamaño: {{animal.size}}</p>
-    @if (animal.gender == "male") {
-      <p>Sexo: Macho</p>
-    } @else if (animal.gender == "female"){
-      <p>Sexo: Hembra</p>
-    }
-
+    <p>Tamaño: {{animal.size! | size}}</p>
+    <p>Sexo: {{animal.gender! | gender}}</p>
 
   </article>
   <article class="Foto">
@@ -51,7 +46,12 @@
 <!--    <?php endif; ?>-->
 <!--  </article>-->
 
-
+<article class="Registro">
+  <h2 class="Titulo">Registros</h2>
+  <app-entry-list
+    [entries] = []
+  />
+</article>
 
 
 </div>

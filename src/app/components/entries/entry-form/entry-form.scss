@@ -1,1 +1,6 @@
 @use "../../../core/styles/form";
+@media  (width > 500px) {
+  form {
+    width: 450px;
+  }
+}

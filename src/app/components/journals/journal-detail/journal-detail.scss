@@ -8,19 +8,14 @@ article{
   justify-content: center;
   min-height: 3em;
   width: 100%;
+  border-bottom: 3px dashed var(--c3);
 
 }
 
 
-img {
-  max-width: 30%;
-  margin: 5px;
-  border-radius: 5px;
-  height: auto;
-}
+
 
 article.Registro{
-  border-bottom: 3px dashed var(--c3);
   margin-bottom: 10px;
   align-items: start;
 
@@ -42,6 +37,12 @@ article.Foto{
     overflow-x: auto;
     width: 100%;
   }
+  img {
+     max-width: 30%;
+     margin: 5px;
+     border-radius: 5px;
+     height: auto;
+   }
 }
 
 article.Foto a::before{

@@ -5,12 +5,18 @@ import {DatePipe, NgOptimizedImage} from '@angular/common';
 
 import {JournalContextService} from '@services/utils/journal-context-service';
 import {environment} from '@environments/environment';
+import {EntryList} from '@app/components/entries/entry-list/entry-list';
+import {SizePipe} from '@core/pipes/size-pipe-pipe';
+import {GenderPipe} from '@core/pipes/gender-pipe';
 
 @Component({
   selector: 'app-journal-detail',
   imports: [
     DatePipe,
-    NgOptimizedImage
+    NgOptimizedImage,
+    EntryList,
+    SizePipe,
+    GenderPipe
   ],
   templateUrl: './journal-detail.html',
   styleUrl: './journal-detail.scss'

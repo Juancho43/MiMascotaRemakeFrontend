@@ -7,7 +7,7 @@ export interface Animal extends Entity {
   description?: string;
   color?: string;
   gender?: 'male' | 'female';
-  birthdate?: Date;
+  birthdate?: string;
   weight?: number;
   breed?: string;
   size?: 'extra-small' | 'small' | 'medium' | 'large' | 'extra-large';
