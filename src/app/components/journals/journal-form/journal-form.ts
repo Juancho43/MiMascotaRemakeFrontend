@@ -11,6 +11,7 @@ import {JournalContextService} from '@services/utils/journal-context-service';
     ReactiveFormsModule
   ],
   templateUrl: './journal-form.html',
+  standalone: true,
   styleUrl: './journal-form.scss'
 })
 export default class JournalForm  implements OnInit {
@@ -58,7 +59,7 @@ export default class JournalForm  implements OnInit {
 
   }
   onSubmit() {
-    if (!this.edit){
+    if (!this.edit()){
       this.service.postJournal(this.toJournalData()).subscribe();
     }else{
       this.service.putJournal(this.toJournalData()).subscribe({
