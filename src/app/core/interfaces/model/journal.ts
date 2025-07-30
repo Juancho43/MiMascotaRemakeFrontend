@@ -7,4 +7,5 @@ export interface Journal extends Entity {
   animal: Animal;
   user?: User;
   entries?: Entry[];
+  entryCount?: number;
 }

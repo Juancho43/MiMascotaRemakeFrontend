@@ -1,0 +1,28 @@
+@if (totalPages > 1 ) {
+
+<nav class="pagination">
+  <ul>
+    <li>
+      <button (click)="changePage(currentPage() - 1)" [disabled]="currentPage() === 1">
+        Previo
+      </button>
+    </li>
+    @for (totalPages of [].constructor(totalPages); track $index) {
+    <li>
+      <button
+        (click)="changePage($index + 1)"
+        [class.active]="currentPage() === $index + 1"
+      >
+        {{ $index + 1 }}
+      </button>
+    </li>
+
+    }
+    <li>
+      <button (click)="changePage(currentPage() + 1)" [disabled]="currentPage() === totalPages">
+        Siguiente
+      </button>
+    </li>
+  </ul>
+</nav>
+}

@@ -3,7 +3,7 @@
 
 @if (this.journal() != null){
 @let animal = this.journal()!.animal;
-  <article class="Registro">
+  <article class="Datos">
     <h2 class="Titulo">Datos</h2>
     <p>Nombre: {{animal.name}}</p>
     <p>Descripción: {{animal.description}}</p>
@@ -44,10 +44,15 @@
 <!--  </article>-->
 @if (!this.entriesResource.isLoading()) {
   @let entries = this.entriesResource.value()!.data!;
-  <article class="Registro">
+  @let totalItems = this.journal()!.entryCount!;
+  <article class="Registros">
     <h2 class="Titulo">Registros</h2>
+    Registros totales: {{totalItems}}
     <app-entry-list
       [entries] = entries
+      [totalItems]="totalItems"
+      [currentPage]="page()"
+      (page)="changePage($event)"
     />
   </article>
 

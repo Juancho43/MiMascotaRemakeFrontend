@@ -9,6 +9,7 @@ import {EntryList} from '@app/components/entries/entry-list/entry-list';
 import {SizePipe} from '@core/pipes/size-pipe-pipe';
 import {GenderPipe} from '@core/pipes/gender-pipe';
 
+
 @Component({
   selector: 'app-journal-detail',
   imports: [
@@ -22,6 +23,7 @@ import {GenderPipe} from '@core/pipes/gender-pipe';
   styleUrl: './journal-detail.scss'
 })
 export default class JournalDetail {
+  protected readonly environment = environment;
   private context = inject(JournalContextService);
   private service = inject(JournalService);
   journal =this.context.getJournal() ?? signal(null);
@@ -35,5 +37,7 @@ export default class JournalDetail {
     stream: ({params}) => this.service.getEntries(params.id, params.page),
   });
 
-  protected readonly environment = environment;
+  changePage(page: number) {
+    this.page.set(page);
+  }
 }

@@ -15,7 +15,7 @@ import {Journal} from '@model/model/journal';
   templateUrl: './journal-view.html',
   styleUrl: './journal-view.scss'
 })
-export default class JournalView implements OnInit {
+export default class JournalView  {
   readonly id = input.required<string>();
   private journalContextService = inject(JournalContextService);
   private service = inject(JournalService);
@@ -35,14 +35,14 @@ export default class JournalView implements OnInit {
     });
   }
 
-  ngOnInit(): void {
-    // Ya no necesitas lógica aquí, el effect se encarga
-  }
+
 
   toJournal(): Journal {
     return {
       id: this.id(),
-      animal: this.journalResource.value()!.data!
+      animal: this.journalResource.value()!.data!.animal,
+      entryCount: this.journalResource.value()!.data!.entryCount,
+
     }
   }
 }

@@ -1,0 +1,8 @@
+@use "../../../core/styles/mixins";
+.Contenedor__Registros{
+  @include mixins.flex-row();
+  justify-content: start;
+
+  width: 100%;
+  padding: 0.5rem;
+}

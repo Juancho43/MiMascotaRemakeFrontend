@@ -25,7 +25,7 @@ export class JournalService {
   }
 
   getJournal(id: string) {
-    return this.http.get<ApiResponse<Animal>>(environment.api_url+journalEndpoint.getJournal.replace(':id', id), {context: checkToken()}).pipe(
+    return this.http.get<ApiResponse<Journal>>(environment.api_url+journalEndpoint.getJournal.replace(':id', id), {context: checkToken()}).pipe(
       catchError(() => {
         this.notification.showErrorNotification();
         return of();

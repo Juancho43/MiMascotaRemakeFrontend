@@ -1,6 +1,15 @@
-<p>entry-list works!</p>
-@for (entry of entries(); track entry.id!) {
-  <app-entry
-    [entry]="entry"
-  />
-}
+<div class="Contenedor__Registros">
+  @for (entry of entries(); track entry.id!) {
+    <app-entry
+      [entry]="entry"
+    />
+  }
+</div>
+<app-pagination
+  [totalItems]="totalItems()"
+  [currentPage]="currentPage()"
+  [maxItems]="3"
+  (pageChange)="changePage($event)"
+
+/>
+

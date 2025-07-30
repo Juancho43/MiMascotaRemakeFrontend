@@ -13,17 +13,23 @@ article{
 }
 
 
+article.Registros{
+  @include mixins.flex-column;
+  justify-content: space-between;
+  width: 100%;
+  padding: 0.5rem;
+  margin-bottom: 1rem;
+}
 
-
-article.Registro{
+article.Datos{
   margin-bottom: 10px;
-  align-items: start;
+
 
 }
-article.Registro p, .Titulo{  color:black;
+article.Datos p, .Titulo{  color:black;
   margin-left: 7px;
 }
-article.Registro a{
+article.Datos a{
   margin: .3em;
   background: rgba(255,255,255,70%);
   padding: .3em;
@@ -43,13 +49,13 @@ article.Foto{
      border-radius: 5px;
      height: auto;
    }
-}
+  a::before{
+    content: "#";
+    color: var(--c1);
+  }
 
-article.Foto a::before{
-  content: "#";
-  color: var(--c1);
-}
 
+}
 
 .Main{
  @include mixins.flex-column;
