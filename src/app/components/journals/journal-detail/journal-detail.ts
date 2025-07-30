@@ -1,4 +1,4 @@
-import {Component, inject} from '@angular/core';
+import {Component, inject, signal} from '@angular/core';
 import {JournalService} from '@app/core/services/http/journal-service';
 import {rxResource} from '@angular/core/rxjs-interop';
 import {DatePipe, NgOptimizedImage} from '@angular/common';
@@ -24,11 +24,16 @@ import {GenderPipe} from '@core/pipes/gender-pipe';
 export default class JournalDetail {
   private context = inject(JournalContextService);
   private service = inject(JournalService);
-  journal =this.context.getJournal();
+  journal =this.context.getJournal() ?? signal(null);
+  page = signal<number>(1);
   animalImagesResource = rxResource({
-    params: () => ({id: this.journal()!.id!}),
+    params: () => ({id: this.journal()? this.journal()!.id! : ''}),
     stream: ({params}) => this.service.getAnimalImages(params.id),
   })
+  entriesResource = rxResource({
+    params: () => ({id: this.journal()? this.journal()!.id! : '', page: this.page(),}),
+    stream: ({params}) => this.service.getEntries(params.id, params.page),
+  });
 
   protected readonly environment = environment;
 }

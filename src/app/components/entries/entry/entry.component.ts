@@ -6,6 +6,7 @@ import {DatePipe} from '@angular/common';
   selector: 'app-entry',
   imports: [
     DatePipe
+
   ],
   templateUrl: './entry.component.html',
   styleUrl: './entry.component.scss'

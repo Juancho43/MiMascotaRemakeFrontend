@@ -1,6 +1,11 @@
+@let edit = this.edit();
 <form [formGroup]="entryForm" (ngSubmit)="onSubmit()">
   <fieldset>
-    <legend>Nuevo registro</legend>
+    @if (!edit){
+      <legend>Nuevo registro</legend>
+    } @else {
+      <legend>Editar registro</legend>
+    }
     <label for="fecha">*Fecha</label>
     <input
       type="date"
@@ -25,7 +30,11 @@
       formControlName="content"
     >
     </textarea>
-    <button type="submit">Cargar registro</button>
+    @if (!edit){
+      <button type="submit">Cargar registro</button>
+    }@else{
+      <button type="submit">Actualizar registro</button>
+    }
   </fieldset>
   <p class='alerta'>* Los campos son obligatorios.</p>
 </form>

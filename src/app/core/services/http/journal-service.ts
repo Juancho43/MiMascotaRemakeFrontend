@@ -11,6 +11,7 @@ import {Animal} from '@model/model/animal';
 import {ApiResponse} from '@model/ApiResponse';
 import {animalEndpoint} from '@core/endpoints/animal.endpoint';
 import {ImagesResponse} from '@model/model/ImagesResponse';
+import {Entry} from '@model/model/entry';
 
 @Injectable({
   providedIn: 'root'
@@ -63,9 +64,9 @@ export class JournalService {
     );
   }
 
-  getEntries(journalId: string, page : int) {
+  getEntries(journalId: string, page : number) {
     const url = environment.api_url + journalEndpoint.getEntries.replace(':id', journalId).replace(':page', page.toString());
-    return this.http.get<ApiResponseCollection<Journal>>(environment.api_url + journalEndpoint.getEntries.replace(':id', journalId) + `?page=${page}`, {context: checkToken()}).pipe(
+    return this.http.get<ApiResponseCollection<Entry>>(url, {context: checkToken()}).pipe(
       catchError(() => {
         this.notification.showErrorNotification();
         return of();

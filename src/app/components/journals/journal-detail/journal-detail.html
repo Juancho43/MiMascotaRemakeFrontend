@@ -1,16 +1,9 @@
-@let animal = this.journal()!.animal;
-@let images = this.animalImagesResource.value()!.data!.images;
-@if (animal == null) {
-  <p class="error">No se ha encontrado el animal.</p>
-} @else if (images == null || images.length == 0) {
-  <p class="error">No hay imágenes disponibles para este animal.</p>
-}
+
 <div class="Main">
 
-
+@if (this.journal() != null){
+@let animal = this.journal()!.animal;
   <article class="Registro">
-
-
     <h2 class="Titulo">Datos</h2>
     <p>Nombre: {{animal.name}}</p>
     <p>Descripción: {{animal.description}}</p>
@@ -20,8 +13,10 @@
     <p>Color: {{animal.color}}</p>
     <p>Tamaño: {{animal.size! | size}}</p>
     <p>Sexo: {{animal.gender! | gender}}</p>
-
   </article>
+}
+@if (!this.animalImagesResource.isLoading()) {
+@let images = this.animalImagesResource.value()!.data!.images;
   <article class="Foto">
     <h2 class="Titulo">Fotos</h2>
     <div class="Foto__container">
@@ -37,6 +32,8 @@
 
   </article>
 
+  }
+
 
 <!--  <article class="Foro">-->
 <!--    <?php if(mysqli_num_rows($query) >0): ?>-->
@@ -45,14 +42,17 @@
 <!--    <?php endwhile; ?>-->
 <!--    <?php endif; ?>-->
 <!--  </article>-->
+@if (!this.entriesResource.isLoading()) {
+  @let entries = this.entriesResource.value()!.data!;
+  <article class="Registro">
+    <h2 class="Titulo">Registros</h2>
+    <app-entry-list
+      [entries] = entries
+    />
+  </article>
 
-<article class="Registro">
-  <h2 class="Titulo">Registros</h2>
-  <app-entry-list
-    [entries] = []
-  />
-</article>
 
+}
 
 </div>
 

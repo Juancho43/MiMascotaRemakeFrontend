@@ -6,6 +6,7 @@ import {ApiResponse} from '@model/ApiResponse';
 import {environment} from '@environments/environment.development';
 import {entryEndpoint} from '@core/endpoints/entry.endpoint';
 import {checkToken} from '@core/other/token.interceptor';
+import {catchError, of, tap} from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -26,7 +27,7 @@ export class EntryService {
         this.notification.showSuccesNotification('Entry created successfully');
       }),
       catchError((error) => {
-        this.notification.showErrorNotification('Failed to create entry');
+        this.notification.showErrorNotification();
         return of(error);
       })
     );
@@ -43,7 +44,7 @@ export class EntryService {
         this.notification.showSuccesNotification('Entry updated successfully');
       }),
       catchError((error) => {
-        this.notification.showErrorNotification('Failed to update entry');
+        this.notification.showErrorNotification();
         return of(error);
       })
     );
