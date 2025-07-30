@@ -1,4 +1,4 @@
-import {Component, inject, input, signal} from '@angular/core';
+import {Component, inject} from '@angular/core';
 import {JournalService} from '@app/core/services/http/journal-service';
 import {rxResource} from '@angular/core/rxjs-interop';
 import {DatePipe, NgOptimizedImage} from '@angular/common';

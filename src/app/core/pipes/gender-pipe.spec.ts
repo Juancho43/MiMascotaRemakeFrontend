@@ -1,4 +1,4 @@
-import { GenderPipe } from './gender-pipe';
+import {GenderPipe} from './gender-pipe';
 
 describe('GenderPipe', () => {
   it('create an instance', () => {

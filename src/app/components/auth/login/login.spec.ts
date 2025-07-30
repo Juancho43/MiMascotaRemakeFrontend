@@ -1,8 +1,7 @@
 import {ComponentFixture, TestBed} from '@angular/core/testing';
 
 import Login from './login';
-import {HttpClientTestingModule, provideHttpClientTesting} from '@angular/common/http/testing';
-import {HttpClient} from '@angular/common/http';
+import {HttpClientTestingModule} from '@angular/common/http/testing';
 import {ActivatedRoute} from '@angular/router';
 
 describe('Login', () => {

@@ -4,7 +4,6 @@ import {AuthService} from '@http/auth.service';
 import {LoginData} from '@model/auth/LoginData';
 import {Router} from '@angular/router';
 import {RegisterData} from '@model/auth/RegisterData';
-import {User} from '@model/auth/User';
 
 
 @Injectable({

@@ -1,8 +1,8 @@
-import { Injectable, Inject, PLATFORM_ID } from '@angular/core';
-  import { isPlatformBrowser } from '@angular/common';
-  import { getCookie, removeCookie, setCookie } from 'typescript-cookie';
+import {Inject, Injectable, PLATFORM_ID} from '@angular/core';
+import {isPlatformBrowser} from '@angular/common';
+import {getCookie, removeCookie, setCookie} from 'typescript-cookie';
 
-  @Injectable({
+@Injectable({
     providedIn: 'root',
   })
   export class CookieService {

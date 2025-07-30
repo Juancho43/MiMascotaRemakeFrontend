@@ -4,7 +4,6 @@ import {JournalService} from '@http/journal-service';
 import {Journal} from '@model/model/journal';
 import {Router} from '@angular/router';
 import {JournalContextService} from '@services/utils/journal-context-service';
-import {formatDate} from '@angular/common';
 
 @Component({
   selector: 'app-journal-form',

@@ -1,8 +1,7 @@
-import { TestBed } from '@angular/core/testing';
+import {TestBed} from '@angular/core/testing';
 
-import { Session } from '@services/utils/session';
+import {Session} from '@services/utils/session';
 import {HttpClientTestingModule} from '@angular/common/http/testing';
-import {ImageService} from '@http/image-service';
 
 describe('Session', () => {
   let service: Session;

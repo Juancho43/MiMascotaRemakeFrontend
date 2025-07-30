@@ -1,7 +1,7 @@
 import {ComponentFixture, TestBed} from '@angular/core/testing';
 
 import {Button} from './button';
-import {ActivatedRoute, provideRouter} from '@angular/router';
+import {ActivatedRoute} from '@angular/router';
 
 describe('Button', () => {
   let component: Button;

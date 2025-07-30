@@ -1,7 +1,5 @@
-import {inject, Injectable, signal} from '@angular/core';
+import {Injectable, signal} from '@angular/core';
 import {Journal} from '@model/model/journal';
-import {rxResource} from '@angular/core/rxjs-interop';
-import {JournalService} from '@http/journal-service';
 
 @Injectable({
   providedIn: 'root'

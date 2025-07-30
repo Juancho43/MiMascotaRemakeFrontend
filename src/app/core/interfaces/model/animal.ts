@@ -1,6 +1,4 @@
-import {Journal} from '@model/model/journal';
 import {Entity} from '@model/model/entity';
-import {Image} from '@model/model/image';
 
 export interface Animal extends Entity {
   name: string;

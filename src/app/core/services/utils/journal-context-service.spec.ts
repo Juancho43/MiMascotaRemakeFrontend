@@ -1,6 +1,6 @@
-import { TestBed } from '@angular/core/testing';
+import {TestBed} from '@angular/core/testing';
 
-import { JournalContextService } from './journal-context-service';
+import {JournalContextService} from './journal-context-service';
 
 describe('JournalContextService', () => {
   let service: JournalContextService;

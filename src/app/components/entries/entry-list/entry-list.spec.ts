@@ -1,6 +1,6 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import {ComponentFixture, TestBed} from '@angular/core/testing';
 
-import { EntryList } from './entry-list';
+import {EntryList} from './entry-list';
 
 describe('EntryList', () => {
   let component: EntryList;

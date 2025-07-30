@@ -1,5 +1,5 @@
-import { TestBed } from '@angular/core/testing';
-import { ImageService } from './image-service';
+import {TestBed} from '@angular/core/testing';
+import {ImageService} from './image-service';
 import {HttpClientTestingModule} from '@angular/common/http/testing';
 
 describe('ImageService', () => {

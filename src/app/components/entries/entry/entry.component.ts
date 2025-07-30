@@ -1,6 +1,7 @@
 import {Component, input} from '@angular/core';
 import {Entry} from '@model/model/entry';
 import {DatePipe} from '@angular/common';
+
 @Component({
   selector: 'app-entry',
   imports: [

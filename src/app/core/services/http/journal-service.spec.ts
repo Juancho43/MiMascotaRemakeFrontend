@@ -1,8 +1,7 @@
-import { TestBed } from '@angular/core/testing';
+import {TestBed} from '@angular/core/testing';
 
-import { JournalService } from './journal-service';
+import {JournalService} from './journal-service';
 import {HttpClientTestingModule} from '@angular/common/http/testing';
-import {ImageService} from '@http/image-service';
 
 describe('JournalService', () => {
   let service: JournalService;
