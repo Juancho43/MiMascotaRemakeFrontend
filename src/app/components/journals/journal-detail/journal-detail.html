@@ -1,18 +1,18 @@
 
 <div class="Main">
 
-@if (this.journal() != null){
+@if (this.journal()){
 @let animal = this.journal()!.animal;
   <article class="Registro">
     <h2 class="Titulo">Datos</h2>
-    <p>Nombre: {{animal.name}}</p>
-    <p>Descripción: {{animal.description}}</p>
-    <p>Fecha de nacimiento: {{animal.birthdate | date}}</p>
-    <p>Raza: {{animal.breed}}</p>
-    <p>Peso: {{animal.weight}} kg</p>
-    <p>Color: {{animal.color}}</p>
-    <p>Tamaño: {{animal.size! | size}}</p>
-    <p>Sexo: {{animal.gender! | gender}}</p>
+    <p>Nombre: {{animal?.name}}</p>
+    <p>Descripción: {{animal?.description}}</p>
+    <p>Fecha de nacimiento: {{animal?.birthdate | date}}</p>
+    <p>Raza: {{animal?.breed}}</p>
+    <p>Peso: {{animal?.weight}} kg</p>
+    <p>Color: {{animal?.color}}</p>
+    <p>Tamaño: {{animal?.size! | size}}</p>
+    <p>Sexo: {{animal?.gender! | gender}}</p>
   </article>
 }
 @if (!this.animalImagesResource.isLoading()) {
