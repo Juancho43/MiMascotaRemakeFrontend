@@ -1,0 +1,9 @@
+@if (this.getEntry() != null) {
+  @let entry = this.getEntry();
+  <app-back-button/>
+  <app-entry-form
+    [entryToEdit]="entry()"
+    [edit]="true"
+  />
+
+}

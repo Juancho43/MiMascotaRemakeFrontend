@@ -1,1 +1,24 @@
-<p>animal-images works!</p>
+@if (!this.animalImagesResource.isLoading()) {
+  @let images = this.animalImagesResource.value()!.data!.images;
+  <article class="Foto">
+    <h2 class="Titulo">Fotos</h2>
+    @if (images.length > 0) {
+      <div class="Foto__container">
+        @for (i of images; track i.id) {
+          <img
+            (click)="onDeleteHandler(i.image.id!)"
+            [src]="environment.public_url+'/'+i.image.path"
+            width="672"
+            height="402"
+            [alt]="i.image.type"
+          />
+        }
+      </div>
+      <p>Para eliminar una foto haga click sobre ella.</p>
+    } @else{
+      <p>Puedes subir hasta tres fotos de tu mascota.</p>
+    }
+
+  </article>
+
+}

@@ -3,6 +3,7 @@ export interface RegisterData {
   email: string;
   telephone: string;
   password: string;
+  password_confirmation?: string;
   latitude: number;
   longitude: number;
 }

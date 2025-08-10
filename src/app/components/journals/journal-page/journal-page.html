@@ -1,26 +1,20 @@
-
-
-  <h3 class="Contenedor__subtitulo">Libretas: </h3>
-  <div class="menu">
-    <app-button
-      route="new"
-      icon="assets/plus.svg"
-      label="Nueva libreta"
-    />
-    <app-button
-      route="all"
-      icon="assets/view-grid.svg"
-      label="Ver libretas"
-    />
-    <app-button
-      route="trash"
-      icon="assets/trash.svg"
-      label="Papelera"
-    />
+<h3 class="Contenedor__subtitulo">Libretas: </h3>
+<div class="menu">
+  <app-button
+    tooltip="Crear una nueva libreta."
+    route="new"
+    icon="assets/plus.svg"
+    label="Nueva libreta"
+  />
+  <app-button
+    tooltip="Ver todas las libretas."
+    route="all"
+    icon="assets/view-grid.svg"
+    label="Ver libretas"
+  />
   </div>
 
   <section>
-
-  <router-outlet/>
+    <router-outlet/>
   </section>
 

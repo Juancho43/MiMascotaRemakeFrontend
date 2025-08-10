@@ -105,4 +105,33 @@ export class AuthService {
     );
   }
 
+  editUser(data: User) {
+
+    return this.http.put<ApiResponse<User>>(environment.api_url + authEndpoint.userEdit, data, {
+      context: checkToken(),
+    }).pipe(
+      tap(() => {
+        this.notification.showSuccesNotification('Usuario actualizado correctamente');
+      }),
+      catchError(() => {
+        this.notification.showErrorNotification();
+        return of();
+      }),
+    );
+  }
+
+  deleteUser(data: User){
+    return this.http.delete<ApiResponse<string>>(environment.api_url + authEndpoint.userDelete.replace(':id',data.id!), {
+      context: checkToken(),
+      body: data,
+    }).pipe(
+      tap(() => {
+        this.notification.showSuccesNotification('Usuario eliminado correctamente');
+      }),
+      catchError(() => {
+        this.notification.showErrorNotification();
+        return of();
+      }),
+    );
+  }
 }

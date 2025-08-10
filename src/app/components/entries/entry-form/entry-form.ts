@@ -1,8 +1,8 @@
-import {Component, inject, input, signal} from '@angular/core';
+import {Component, effect, inject, input, signal} from '@angular/core';
 import {FormControl, FormGroup, ReactiveFormsModule} from '@angular/forms';
 import {EntryService} from '@http/entry-service';
 import {Entry} from '@core/interfaces/model/entry';
-import {JournalContextService} from '@services/utils/journal-context-service';
+import {JournalContextService} from '@services/context/journal-context-service';
 
 @Component({
   selector: 'app-entry-form',
@@ -10,49 +10,52 @@ import {JournalContextService} from '@services/utils/journal-context-service';
     ReactiveFormsModule
   ],
   templateUrl: './entry-form.html',
+  standalone: true,
   styleUrl: './entry-form.scss'
 })
-export default class EntryForm {
+export class EntryForm {
   private journalContext = inject(JournalContextService);
   private service = inject(EntryService); // Assuming you have an EntryService to handle form submissions
-  edit = signal<boolean>(false);
+  readonly edit = input<boolean>(false);
+  readonly entryToEdit = input<Entry | null>(null);
   journal = this.journalContext.getJournal();
   entryForm = new FormGroup({
     title: new FormControl<string | null>(null),
     content: new FormControl<string | null>(null),
     date: new FormControl<string | null>(null),
-    journal_id: new FormControl<number | null>(null)
+    journal_id: new FormControl<string | null>(null)
   })
 
-  onSubmit() {
-    if (!this.edit()) {
-      this.service.create(this.toEntry()).subscribe({
-        next: (response) => {
-          console.log('Entry created successfully:', response);
-        },
-        error: (error) => {
-          console.error('Error creating entry:', error);
-        }
-      });
-    }else{
-      this.service.update(this.toEntry()).subscribe({
-        next: (response) => {
-          console.log('Entry updated successfully:', response);
-        },
-        error: (error) => {
-          console.error('Error updating entry:', error);
-        }
+    constructor() {
+      effect(() => {
+        if (this.edit()) this.toForm(this.entryToEdit()!);
       });
     }
 
-    console.log('Form submitted:', this.toEntry());
-  }
+    onSubmit() {
+      if (!this.edit()) {
+        this.service.create(this.toEntry()).subscribe();
+      }else{
+        this.service.update(this.toEntry()).subscribe();
+      }
+    }
+    toForm(entry: Entry) {
+      this.entryForm.patchValue({
+        title: entry.title,
+        content: entry.content,
+        date: entry.date,
+        journal_id: entry.journal_id
+      })
+    }
+
     toEntry() : Entry {
       return{
+        id: this.edit() ? this.entryToEdit()!.id : undefined,
         journal_id: this.journal()!.id!,
         title: this.entryForm.get('title')?.value!,
         content: this.entryForm.get('content')?.value!,
-        date: this.entryForm.get('date')?.value! ,
+        date:this.entryForm.get('date')?.value! ,
+        user_id: this.journal()!.user_id
       };
     }
 }

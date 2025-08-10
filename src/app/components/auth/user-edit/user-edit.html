@@ -1,0 +1,18 @@
+@if (!this.userResource.error() && !this.userResource.isLoading()) {
+  @let user = this.userResource.value()!.data!;
+  <section>
+
+    <app-user-form
+      [edit]="true"
+      [userToEdit]="user"
+      (editedUser)="onEditUserHandler($event)"
+    />
+    <app-button
+      route="/auth/user"
+      label="Volver a mi cuenta"
+      icon="assets/back.svg"
+    />
+
+  </section>
+
+}

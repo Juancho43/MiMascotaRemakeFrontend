@@ -36,26 +36,7 @@ article.Datos a{
   border-radius: 5px;
   align-self: center;
 }
-article.Foto{
-  .Foto__container{
-    @include mixins.flex-row;
-    flex-wrap: nowrap;
-    overflow-x: auto;
-    width: 100%;
-  }
-  img {
-     max-width: 30%;
-     margin: 5px;
-     border-radius: 5px;
-     height: auto;
-   }
-  a::before{
-    content: "#";
-    color: var(--c1);
-  }
 
-
-}
 
 .Main{
  @include mixins.flex-column;

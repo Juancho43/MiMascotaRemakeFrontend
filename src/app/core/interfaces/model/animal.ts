@@ -11,4 +11,5 @@ export interface Animal extends Entity {
   size?: 'extra-small' | 'small' | 'medium' | 'large' | 'extra-large';
   journal_id?: string;
   path?:string;
+  user_id?: string;
 }

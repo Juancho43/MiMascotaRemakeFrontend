@@ -13,12 +13,11 @@ export class ImageService {
   private http = inject(HttpClient);
   private notification = inject(NotificationService);
 
- postAnimalImages(animal_id: string, images: File[]) {
+ postAnimalImages(animal_id: string, image: File) {
    const formData = new FormData();
    formData.append('animal_id', animal_id);
-   images.forEach(image => {
-     formData.append('images', image);
-   });
+   formData.append('image', image);
+
 
    return this.http.post(environment.api_url + imageEndpoint.animal, formData, {
      reportProgress: true,

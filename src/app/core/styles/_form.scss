@@ -5,8 +5,8 @@ form{
   flex-direction: column;
   align-items: center;
   padding:15px;
-  margin:auto;
-  width: 90%;
+  //margin:auto;
+  width: 100%;
   box-shadow: 3px 3px  10px var(--c3);
 
   button[type="submit"]{
@@ -23,9 +23,7 @@ form{
       cursor: pointer;
     }
   }
-  section{
-    border-bottom: white 3px solid;
-  }
+
   legend{
     text-decoration: underline;
   }
@@ -82,14 +80,12 @@ form input, form select, form textarea{
   border-radius: 2px;
   font-size: 17px;
   padding: 14px 16px;
-  width: 330px;
+  max-width: 330px;
+
 }
 
-div.contrasenia input{
-  width: calc(330px - 40px);
-}
 
-form a{
+form a, button{
   align-self: center;
   font-size: .9rem;
   text-align: center;

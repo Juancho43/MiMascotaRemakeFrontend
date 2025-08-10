@@ -36,6 +36,11 @@ export const routes: Routes = [
           loadComponent: () => import('./components/auth/user/user'),
           canActivate:[authGuard]
 
+        },
+        {
+          path: 'edit',
+          loadComponent: () => import('./components/auth/user-edit/user-edit'),
+          canActivate:[authGuard]
         }
 
       ]
@@ -67,10 +72,6 @@ export const routes: Routes = [
                   loadComponent: () => import('./components/journals/journal-detail/journal-detail'),
                 },
                 {
-                  path: 'entries/new',
-                  loadComponent: () => import('./components/entries/entry-form/entry-form'),
-                },
-                {
                   path:'image',
                   loadComponent: () => import('./components/journals/animal-image-form/animal-image-form').then( m => m.AnimalImageForm),
                 },
@@ -81,6 +82,19 @@ export const routes: Routes = [
               ]
             }
           ]
+      },
+      {
+        path: 'entries',
+        children:[
+          {
+            path: 'new',
+            loadComponent: () => import('./components/entries/entry-new/entry-new'),
+          },
+          {
+            path: 'edit/:entryId',
+            loadComponent: () => import('./components/entries/entry-edit/entry-edit'),
+          },
+        ]
       }
     ]
   },

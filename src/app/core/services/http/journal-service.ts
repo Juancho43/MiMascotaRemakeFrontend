@@ -12,6 +12,7 @@ import {ApiResponse} from '@model/ApiResponse';
 import {animalEndpoint} from '@core/endpoints/animal.endpoint';
 import {ImagesResponse} from '@model/model/ImagesResponse';
 import {Entry} from '@model/model/entry';
+import {DeleteAnimalImage} from '@model/command/DeleteAnimalImage';
 
 @Injectable({
   providedIn: 'root'
@@ -55,6 +56,17 @@ export class JournalService {
       }),
     );
   }
+  deleteJournal(id: string) {
+    return this.http.delete<ApiResponse<Animal>>(environment.api_url+journalEndpoint.deleteJournal.replace(':id', id), {context: checkToken()}).pipe(
+      tap(() => {
+        this.notification.showSuccesNotification('Libreta eliminada correctamente');
+      }),
+      catchError(() => {
+        this.notification.showErrorNotification();
+        return of();
+      }),
+    );
+  }
   getAnimalImages(animalId: string) {
     return this.http.get<ApiResponse<ImagesResponse>>(environment.api_url + animalEndpoint.images.replace(':id', animalId), {context: checkToken()}).pipe(
       catchError(() => {
@@ -71,6 +83,15 @@ export class JournalService {
         this.notification.showErrorNotification();
         return of();
       }),
+    );
+  }
+
+  deleteAnimalImage(data : DeleteAnimalImage) {
+    const url = environment.api_url + animalEndpoint.deleteImage;
+    return this.http.put(
+      url,
+      data,
+      {context: checkToken()}
     );
   }
 }

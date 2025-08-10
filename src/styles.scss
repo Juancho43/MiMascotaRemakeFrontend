@@ -35,12 +35,21 @@ body {
   font-family: var(--f2), "Helvetica Neue", sans-serif;
 
 }
-article, section{
+article, section {
+
   color:black;
   font-weight:1000;
   padding: 0;
   margin: 0;
   background: none;
+
+}
+section{
+  width: 80dvw;
 }
 
 
+.cdk-overlay-backdrop {
+  backdrop-filter: blur(8px);
+
+}

@@ -1,4 +1,7 @@
-<button [routerLink]="route()">
+<button
+  [routerLink]="route()"
+  [title] ="tooltip() || label()"
+>
   @if(icon()){
     <img
       [ngSrc]="icon()!"

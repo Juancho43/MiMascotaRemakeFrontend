@@ -1,4 +1,4 @@
-import {AfterViewInit, Component, Inject, output, PLATFORM_ID} from '@angular/core';
+import {AfterViewInit, Component, Inject, input, output, PLATFORM_ID} from '@angular/core';
 import {isPlatformBrowser} from '@angular/common';
 
 @Component({
@@ -8,7 +8,7 @@ import {isPlatformBrowser} from '@angular/common';
     styleUrl: './location-picker.scss'
   })
   export class LocationPicker implements AfterViewInit {
-
+    readonly initalCoordinates = input({ lat: -34.603722, lng: -58.381592 }); // Default coordinates (Buenos Aires)
     coordinatesSelected = output<{ lat: number, lng: number }>();
     private map: any;
     private marker: any;

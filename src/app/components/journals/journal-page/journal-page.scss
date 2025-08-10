@@ -4,7 +4,9 @@ section{
   container-name:page;
   container-type: inline-size;
   justify-content: center;
-  width: 100dvw;
+  align-items: center;
+  width: 100%;
   @include flex-column;
   @include form-container;
+
 }

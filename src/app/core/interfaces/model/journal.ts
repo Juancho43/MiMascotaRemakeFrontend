@@ -6,6 +6,7 @@ import {Entry} from '@model/model/entry';
 export interface Journal extends Entity {
   animal: Animal;
   user?: User;
+  user_id?: string;
   entries?: Entry[];
   entryCount?: number;
 }

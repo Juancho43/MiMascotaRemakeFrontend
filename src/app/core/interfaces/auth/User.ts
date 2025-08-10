@@ -7,6 +7,9 @@ export interface User extends  Entity {
   email: string;
   telephone: string;
   location?: string;
+  role?: string;
+  latitude?: number;
+  longitude?: number;
   journals? : Journal[];
   image?: Image;
 }

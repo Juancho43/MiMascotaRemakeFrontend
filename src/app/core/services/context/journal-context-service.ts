@@ -5,8 +5,7 @@ import {Journal} from '@model/model/journal';
   providedIn: 'root'
 })
 export class JournalContextService {
-  private journal  = signal<Journal | null>(null);
-
+  private journal = signal<Journal>({} as Journal);
   setJournal(journal: Journal ): void {
     this.journal.set(journal);
 

@@ -4,4 +4,5 @@ export const journalEndpoint = {
   'getEntries': '/journal/entries/:id/:page',
   'createJournal': '/journal/create',
   'updateJournal': '/animal/edit',
+  'deleteJournal': '/journal/delete/:id',
 }

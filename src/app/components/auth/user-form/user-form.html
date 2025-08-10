@@ -1,0 +1,54 @@
+@let edit = this.edit();
+<section>
+  <p class='alerta'>* Los campos son obligatorios.</p>
+  <form [formGroup]="userForm"  (ngSubmit)="onSubmit()">
+    @if (!edit){
+      <legend>Crea una cuenta.</legend>
+    } @else {
+      <legend>Editar cuenta.</legend>
+    }
+    <fieldset>
+      <label for="nombre">*Nombre</label>
+      <input
+        type="text"
+        id="nombre"
+        placeholder="Tu nombre"
+        formControlName="name"
+      >
+      <label for="telefono">*Teléfono</label>
+      <input
+        type="tel"
+        id="telefono"
+        placeholder="Tu teléfono"
+        formControlName="phone"
+      />
+      @if (!edit){
+        <label for="mail">*Mail</label>
+        <input
+          type="email"
+          id="mail"
+          placeholder="Tu mail"
+          formControlName="email"
+        >
+        <label for="clave">*Contraseña</label>
+        <input
+          type="password"
+          id="clave"
+          placeholder="Tu contraseña"
+          formControlName="password"
+        >
+        <!--      <label for="clavedos">*Repetir contraseña</label>-->
+        <!--      <input type="password" name="clavedos" id="clavedos" placeholder="Repetir tu contraseña" required>-->
+
+      }
+
+      <label for="ubicacion">Ubicación</label>
+      <app-location-picker (coordinatesSelected)="onLocationSelected($event)"/>
+      @if (!edit){
+        <button type="submit">Registrarse</button>
+      } @else {
+        <button type="submit">Guardar cambios</button>
+      }
+    </fieldset>
+    </form>
+</section>

@@ -3,7 +3,7 @@ import {FormControl, FormGroup, ReactiveFormsModule} from '@angular/forms';
 import {JournalService} from '@http/journal-service';
 import {Journal} from '@model/model/journal';
 import {Router} from '@angular/router';
-import {JournalContextService} from '@services/utils/journal-context-service';
+import {JournalContextService} from '@services/context/journal-context-service';
 
 @Component({
   selector: 'app-journal-form',
@@ -30,6 +30,8 @@ export default class JournalForm  implements OnInit {
     breed: new FormControl(''),
     weight: new FormControl(0),
     journal_id: new FormControl<string | undefined>(undefined),
+    user_id: new FormControl<string | undefined>(undefined),
+
   });
 
   ngOnInit() {
@@ -52,7 +54,8 @@ export default class JournalForm  implements OnInit {
         breed: animal.breed || '',
         weight:animal.weight || 0,
         journal_id: journal()!.id! ,
-        birthdate: animal.birthdate!
+        birthdate: animal.birthdate!,
+        user_id: journal()!.user_id!
       })
     }
 
@@ -83,6 +86,7 @@ export default class JournalForm  implements OnInit {
         weight: this.journalForm.get('weight')?.value || 0,
         breed: this.journalForm.get('breed')?.value || '',
         journal_id: this.journalForm.get('journal_id')!.value!,
+        user_id: this.journalForm.get('user_id')!.value!,
       }
     }
   }

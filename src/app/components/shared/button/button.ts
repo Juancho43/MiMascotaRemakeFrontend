@@ -9,10 +9,12 @@ import {NgOptimizedImage} from '@angular/common';
     NgOptimizedImage
   ],
   templateUrl: './button.html',
+  standalone: true,
   styleUrl: './button.scss'
 })
 export class Button {
-  readonly route = input.required<string>();
+  readonly tooltip = input<string>();
+  readonly route = input<string>();
   readonly label = input<string>();
   readonly icon = input<string>();
 }

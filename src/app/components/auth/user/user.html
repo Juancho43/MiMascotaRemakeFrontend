@@ -14,20 +14,33 @@
   <div>
     <article class="Datos">
       <h2 class="Titulo">Datos</h2>
-      <h2>Nombre: {{user.name}}</h2>
-      <h2>Mail: {{user.email}}</h2>
-      <h2>Télefono: {{user.telephone}}</h2>
-      <h2>Ubicación: {{user.location}}</h2>
 
+      <ul>
+        <li>Nombre: {{user.name}}</li>
+        <li>Mail: {{user.email}}</li>
+        <li>Télefono: {{user.telephone}}</li>
+        <li>Ubicación: {{user.location}}</li>
+        <li>Fecha de registro: {{user.createdAt | date}}</li>
+      </ul>
 <!--      <h2>Notificar: sí</h2>-->
 
 
 
     </article>
-    <article class="Opciones">
+    <article>
       <h2 class="Titulo">Opciones</h2>
-      <a href='<?php echo "editar-cuenta.php?id=$usuario_id";?>'>Editar cuenta</a>
-      <a href='<?php echo "eliminar-cuenta.php?id=$usuario_id";?>'>Eliminar cuenta</a>
+      <div class="menu">
+        <app-button
+         route="/auth/edit"
+         label="Editar cuenta"
+         icon="assets/edit.svg"
+        />
+        <app-button
+          (click)="openDeleteDialog()"
+         label="Eliminar cuenta"
+         icon="assets/delete-profile.svg"
+         />
+      </div>
     </article>
   </div>
 </section>

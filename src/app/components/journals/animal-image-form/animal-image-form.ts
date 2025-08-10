@@ -1,44 +1,41 @@
-import {Component, inject, input, signal} from '@angular/core';
+import {Component, inject, input, linkedSignal, signal} from '@angular/core';
 import {FormControl, FormGroup, ReactiveFormsModule} from '@angular/forms';
 import {ImageService} from '@http/image-service';
 import {JournalService} from '@http/journal-service';
 import {rxResource} from '@angular/core/rxjs-interop';
+import {AnimalImages} from '@app/components/images/animal-images/animal-images';
+import {JournalContextService} from '@services/context/journal-context-service';
 
 @Component({
   selector: 'app-animal-image-form',
   imports: [
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    AnimalImages
   ],
   templateUrl: './animal-image-form.html',
   styleUrl: './animal-image-form.scss'
 })
 export class AnimalImageForm {
   private service = inject(ImageService);
-  private journalService = inject(JournalService);
-  id = input.required<string>();
-  animalResource = rxResource({
-      params : () => ({id: this.id()}),
-      stream: ({params}) => {
-        return this.journalService.getAnimalImages(params.id)
-      }
-  });
+  private journalService = inject(JournalContextService);
+  journal = linkedSignal(this.journalService.getJournal());
 
-  files =signal<File[]> ([]);
+  file =signal<File> ({}as File);
   animalImageForm = new FormGroup({
-    image1: new FormControl<File | null>(null),
-    image2: new FormControl<File | null>(null),
-    image3: new FormControl<File | null>(null),
+    image: new FormControl<File | null>(null),
+
   })
 
   onFileChange(event: Event, controlName: string) {
     const input = event.target as HTMLInputElement;
+
     if (input.files && input.files.length) {
       this.animalImageForm.get(controlName)?.setValue(input.files[0]);
-      this.files.set([...this.files(), input.files[0]]);
+      this.file.set( input.files[0]);
     }
   }
 
  onSubmit() {
-   this.service.postAnimalImages(this.animalResource.value()!.data!.id!,this.files()).subscribe();
+   this.service.postAnimalImages(this.journal().animal.id!,this.file()).subscribe();
  }
 }

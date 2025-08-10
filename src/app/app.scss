@@ -4,3 +4,13 @@
   grid-template-rows: auto 1fr auto;
   grid-template-columns: minmax(0,1fr);
 }
+main{
+
+  margin:auto;
+  height: 100%;
+  max-width: 1200px;
+  min-width: 320px;
+  padding: 0 1rem;
+
+
+}

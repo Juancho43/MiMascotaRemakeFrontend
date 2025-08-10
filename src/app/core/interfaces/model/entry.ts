@@ -7,4 +7,5 @@ export interface Entry extends Entity {
   date: string;
   journal?: Journal;
   journal_id?: string;
+  user_id?: string;
 }

@@ -15,24 +15,7 @@
     <p>Sexo: {{animal?.gender! | gender}}</p>
   </article>
 }
-@if (!this.animalImagesResource.isLoading()) {
-@let images = this.animalImagesResource.value()!.data!.images;
-  <article class="Foto">
-    <h2 class="Titulo">Fotos</h2>
-    <div class="Foto__container">
-    @for (i of images; track i.id) {
-      <img
-        [ngSrc]="environment.public_url+'/'+i.image.path"
-        width="600"
-        height="400"
-        [alt]="i.image.type"
-      />
-    }
-    </div>
-
-  </article>
-
-  }
+<app-animal-images/>
 
 
 <!--  <article class="Foro">-->
