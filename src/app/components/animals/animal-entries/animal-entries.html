@@ -1,0 +1,18 @@
+@if (this.entriesResource.isLoading()) {
+  <app-entry-skeleton/>
+} @else {
+
+@let entries = this.entriesResource.value()!.data! || [];
+@let totalItems = this.items();
+@let page = this.page();
+<article class="Registros">
+  <h2 class="Titulo">Registros</h2>
+  Registros totales: {{totalItems}}
+  <app-entry-list
+    [entries] = entries
+    [totalItems]="totalItems"
+    [currentPage]="page"
+    (page)="changePage($event)"
+  />
+</article>
+}

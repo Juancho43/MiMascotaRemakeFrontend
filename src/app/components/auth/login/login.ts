@@ -1,5 +1,5 @@
 import {Component, inject} from '@angular/core';
-import {RouterLink} from '@angular/router';
+import {Router, RouterLink} from '@angular/router';
 import {Session} from '@services/utils/session';
 import {FormControl, FormGroup, ReactiveFormsModule, Validators} from '@angular/forms';
 import {LoginData} from '@model/auth/LoginData';
@@ -16,7 +16,7 @@ import {LoginData} from '@model/auth/LoginData';
 })
 export default class Login {
   private service = inject(Session);
-
+  private router = inject(Router);
   loginForm = new FormGroup({
     email: new FormControl('', [Validators.required, Validators.email]),
     password: new FormControl('', [Validators.required, Validators.minLength(6)])
@@ -24,6 +24,7 @@ export default class Login {
 
   submitForm(){
     this.service.login(this.getLoginData());
+    this.router.navigateByUrl('/app/journals/all');
   }
 
   getLoginData(): LoginData{

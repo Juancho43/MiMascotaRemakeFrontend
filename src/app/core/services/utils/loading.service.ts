@@ -9,13 +9,13 @@ export class LoadingService {
 
   show(): void {
     this.requestCount++;
-    this.loading.set(true);
+    // this.loading.set(true);
   }
 
   hide(): void {
     this.requestCount--;
-    if (this.requestCount === 0) {
-      this.loading.set(false);
-    }
+    // if (this.requestCount === 0) {
+    //   this.loading.set(false);
+    // }
   }
 }

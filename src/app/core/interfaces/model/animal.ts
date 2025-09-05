@@ -8,8 +8,9 @@ export interface Animal extends Entity {
   birthdate?: string;
   weight?: number;
   breed?: string;
-  size?: 'extra-small' | 'small' | 'medium' | 'large' | 'extra-large';
+  size?: 'tiny' | 'small' | 'medium' | 'large' | 'extra-large';
   journal_id?: string;
+  journal_slug?: string;
   path?:string;
   user_id?: string;
 }

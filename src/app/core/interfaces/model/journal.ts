@@ -9,4 +9,5 @@ export interface Journal extends Entity {
   user_id?: string;
   entries?: Entry[];
   entryCount?: number;
+  journal_slug?: string;
 }

@@ -1,9 +1,12 @@
-import {inject, Injectable, signal} from '@angular/core';
+import {inject, Injectable} from '@angular/core';
 import {CookieService} from '@services/utils/cookie.service';
 import {AuthService} from '@http/auth.service';
 import {LoginData} from '@model/auth/LoginData';
 import {Router} from '@angular/router';
 import {RegisterData} from '@model/auth/RegisterData';
+import {toSignal} from '@angular/core/rxjs-interop';
+import {map} from 'rxjs';
+import {User} from '@model/auth/User';
 
 
 @Injectable({
@@ -13,7 +16,33 @@ export class Session {
   private authService = inject(AuthService);
   private cookieService = inject(CookieService);
   private router = inject(Router);
-  $login = this.isLoggedIn();
+
+  $login =toSignal(
+    this.authService.isLoggedIn().pipe(
+      map(res =>{
+
+        return  res.data!;
+
+
+      }
+)
+    ),
+    { initialValue: !!this.cookieService.getCookie('token') }
+  );
+  $admin = toSignal(
+    this.authService.isAdmin().pipe(
+      map(res =>{
+
+        return  res.data!;
+
+
+      }
+)
+    ),
+    { initialValue: false }
+  );
+
+
 
   login(loginData : LoginData) {
     this.authService.login(loginData).subscribe(
@@ -48,25 +77,17 @@ export class Session {
     );
   }
 
+   private initializeSession(token : string) {
+     this.cookieService.saveCookie('token', token);
 
 
-  private initializeSession(token : string) {
-    this.saveToken(token);
-    this.$login.set(true);
-    this.router.navigate(['/app/journals']);
   }
   private clearSession() {
     this.cookieService.removeCookie('token');
-    this.$login.set(false);
-    this.router.navigate(['/']);
+
   }
-  private saveToken(token: string) {
-    this.cookieService.saveCookie('token', token);
-  }
-  getToken() {
-    return this.cookieService.getCookie('token');
-  }
-  isLoggedIn() {
-    return signal(this.getToken() !== undefined);
-  }
+
+
+
+
 }

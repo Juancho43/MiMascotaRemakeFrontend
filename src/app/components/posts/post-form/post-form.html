@@ -1,0 +1,59 @@
+@let edit = this.isEdit();
+@let location = this.location();
+<form [formGroup]="postForm" (ngSubmit)="onSubmit()">
+  @if (!this.postForm.valid && !this.postForm.pristine) {
+    <div class="error">
+      @if(this.postForm.get('title')!.hasError('required')) {
+        <p>El titulo es obligatorio.</p>
+      }
+      @if(this.postForm.get('title')!.hasError('minlength')) {
+        <p>El titulo debe tener al menos 4 caracteres.</p>
+      }
+      @if(this.postForm.get('title')!.hasError('maxlength')) {
+        <p>El contenido no debe tener al mas de 50 caracteres.</p>
+      }
+      @if(this.postForm.get('content')!.hasError('required')) {
+        <p>El contenido es obligatorio.</p>
+      }
+
+      @if(this.postForm.get('content')!.hasError('minlength')) {
+        <p>El contenido debe tener al menos 4 caracteres.</p>
+      }
+      @if(this.postForm.get('content')!.hasError('maxlength')) {
+        <p>El contenido no debe tener al mas de 255 caracteres.</p>
+      }
+
+    </div>
+  }
+  @if (!edit) {
+    <legend>Nuevo posteo.</legend>
+  } @else {
+    <legend>Editar posteo.</legend>
+  }
+  <label for="title" >Titulo</label>
+  <input type="text" id="title" formControlName="title">
+  <label for="content">Contenido</label>
+
+  <textarea
+    id="content"
+    formControlName="content"
+    cdkTextareaAutosize
+    cdkAutosizeMinRows="5"
+    cdkAutosizeMaxRows="20"
+  ></textarea>
+   <label for="ubicacion">Ubicación</label>
+  <button type="button" id="ubicacion" (click)="openSearchLocation()">Buscar ubicación</button>
+
+    <p>Ciudad seleccionada: {{location.city}}</p>
+    <button type="button" (click)="removeLocation()">Eliminar ubicación</button>
+
+
+  <button type="submit" [disabled]="!postForm.valid || postForm.pristine">
+    @if (!edit) {
+      Cargar posteo
+    } @else {
+      Editar posteo
+    }
+  </button>
+
+</form>

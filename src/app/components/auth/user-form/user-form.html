@@ -1,6 +1,6 @@
 @let edit = this.edit();
 <section>
-  <p class='alerta'>* Los campos son obligatorios.</p>
+
   <form [formGroup]="userForm"  (ngSubmit)="onSubmit()">
     @if (!edit){
       <legend>Crea una cuenta.</legend>
@@ -42,7 +42,7 @@
 
       }
 
-      <label for="ubicacion">Ubicación</label>
+       <label for="ubicacion">Ubicación</label>
       <app-location-picker (coordinatesSelected)="onLocationSelected($event)"/>
       @if (!edit){
         <button type="submit">Registrarse</button>
@@ -50,5 +50,12 @@
         <button type="submit">Guardar cambios</button>
       }
     </fieldset>
+    @if (!edit){
+
+      <a routerLink="/auth/login">¿Ya tienes una cuenta?</a>
+      <p>Al registrarse acepta los términos y condiciones.</p>
+      <a href="terminos-condiciones.pdf">Leer</a>
+    }
+      <p class='alerta'>* Los campos son obligatorios.</p>
     </form>
 </section>

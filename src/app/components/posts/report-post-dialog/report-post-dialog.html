@@ -1,0 +1,29 @@
+@if (!this.reasons.isLoading()){
+
+  @let reasons = this.reasons.value()!.data!;
+  <h2 mat-dialog-title>¿Usted está seguro?</h2>
+
+  <mat-dialog-content>
+    <p>Seleccione una razón para reportar:</p>
+
+    <mat-radio-group [(ngModel)]="selectedReason" aria-label="Seleccione una razón">
+      @for (reason of reasons; track reason){
+        <mat-radio-button [value]="reason">{{ reason }}</mat-radio-button>
+      }
+    </mat-radio-group>
+
+  </mat-dialog-content>
+
+  <mat-dialog-actions align="end">
+    <button mat-button mat-dialog-close>Cancelar</button>
+    <button
+      mat-button
+      [mat-dialog-close]="selectedReason"
+      [disabled]="!selectedReason"
+      class="confirm"
+    >
+      Reportar
+    </button>
+  </mat-dialog-actions>
+}
+

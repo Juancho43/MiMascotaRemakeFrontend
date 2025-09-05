@@ -1,6 +1,14 @@
-div{
-  display: flex;
-  width: 90dvw;
+@use '../../../core/styles/mixins';
+.journals-list{
+  align-self:start;
+  @include mixins.flex-row();
   gap: 1em;
+  width: var(--width);
+}
 
+@media screen and (max-width: 500px){
+  .journals-list{
+   flex-wrap: wrap;
+    width: 90dvw;
+  }
 }

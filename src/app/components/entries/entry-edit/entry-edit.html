@@ -3,6 +3,7 @@
   <app-back-button/>
   <app-entry-form
     [entryToEdit]="entry()"
+    (onSubmitted)="onSubmitHandler()"
     [edit]="true"
   />
 

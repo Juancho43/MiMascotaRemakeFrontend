@@ -1,19 +1,24 @@
 @let entry = this.entry();
-<div>
+<div [cdkContextMenuTriggerFor]="context_menu" >
   <p>Fecha: {{entry.date | date}}</p>
   <h3>{{entry.title}}</h3>
   <p>{{entry.content}}</p>
 </div>
-<div class="menu">
+<ng-template #context_menu>
+
+  <div class="menu" cdkMenu>
     <app-button
+      cdkMenuItem
       (mouseenter)="onEditHandler()"
       tooltip="Editar registro."
       route="/app/entries/edit/{{entry.id}}"
       icon="assets/edit.svg"
     />
     <app-button
+      cdkMenuItem
       tooltip="Eliminar registro."
       (click)="openDeleteDialog()"
       icon="assets/delete.svg"
     />
-</div>
+  </div>
+</ng-template>

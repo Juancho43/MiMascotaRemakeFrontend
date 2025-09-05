@@ -1,6 +1,7 @@
 @use '../../../core/styles/menus';
 div{
   margin: 1rem;
-  max-width: 20rem;
-  overflow-y:scroll;
+  max-width: 60dvw;
+  overflow: auto;
+  padding: 1rem;
 }

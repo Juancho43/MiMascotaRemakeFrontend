@@ -1,0 +1,38 @@
+<div class="menu" [ngClass]="{'overlay': this.overlay()}" >
+
+  <app-button
+    tooltip="Crear una nueva libreta."
+    route="/app/journals/new"
+    icon="assets/plus.svg"
+    label="Nueva libreta"
+  />
+  <app-button
+    tooltip="Ver todas las libretas."
+    route="/app/journals/all"
+    icon="assets/view-grid.svg"
+    label="Ver libretas"
+  />
+
+
+  <app-button
+    tooltip="Ver todas tus publicaciones."
+    route="/post/by/user/all"
+    icon="assets/view-grid.svg"
+    label="Ver publicaciones"
+  />
+  <app-button
+    tooltip="Ver todas tus solicitudes de contacto."
+    route="/app/contacts/requests"
+    icon="assets/view-grid.svg"
+    label="Ver solicitudes hechas"
+  />
+  <app-button
+    tooltip="Ver todas tus solicitudes de contacto realizadas."
+    route="/app/contacts/owner"
+    icon="assets/view-grid.svg"
+    label="Ver solicitudes de usuarios"
+  />
+
+  <app-back-button/>
+</div>
+

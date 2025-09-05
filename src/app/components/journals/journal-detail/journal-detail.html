@@ -1,47 +1,19 @@
+@if(this.journal().journal_slug!){
+
+@let journal = this.journal();
 
 <div class="Main">
-
-@if (this.journal()){
-@let animal = this.journal()!.animal;
-  <article class="Datos">
-    <h2 class="Titulo">Datos</h2>
-    <p>Nombre: {{animal?.name}}</p>
-    <p>Descripción: {{animal?.description}}</p>
-    <p>Fecha de nacimiento: {{animal?.birthdate | date}}</p>
-    <p>Raza: {{animal?.breed}}</p>
-    <p>Peso: {{animal?.weight}} kg</p>
-    <p>Color: {{animal?.color}}</p>
-    <p>Tamaño: {{animal?.size! | size}}</p>
-    <p>Sexo: {{animal?.gender! | gender}}</p>
-  </article>
-}
-<app-animal-images/>
-
-
-<!--  <article class="Foro">-->
-<!--    <?php if(mysqli_num_rows($query) >0): ?>-->
-<!--    <?php while($foro = mysqli_fetch_assoc($query)):?>-->
-<!--    <a href="../foros/ver-publicacion.php?f=<?= $foro["foro"]?>&idf=<?=$foro["idforo"]?>">Ver publicación en foro <?=$foro["foro"] ?></a>-->
-<!--    <?php endwhile; ?>-->
-<!--    <?php endif; ?>-->
-<!--  </article>-->
-@if (!this.entriesResource.isLoading()) {
-  @let entries = this.entriesResource.value()!.data!;
-  @let totalItems = this.journal()!.entryCount!;
-  <article class="Registros">
-    <h2 class="Titulo">Registros</h2>
-    Registros totales: {{totalItems}}
-    <app-entry-list
-      [entries] = entries
-      [totalItems]="totalItems"
-      [currentPage]="page()"
-      (page)="changePage($event)"
-    />
-  </article>
-
-
-}
-
+  <app-animal-data
+    [animal]="journal.animal!"
+  />
+  <app-animal-images
+    [slug]="journal.journal_slug!"
+    [animalId]="journal.animal?.id!"
+  />
+  <app-animal-entries
+    [journalSlug]="journal.journal_slug!"
+    [totalItems]="journal.entryCount!"
+  />
+  //TODO: Buscar alguna alternativa para el entryCount a la hora de eliminar entradas
 </div>
-
-
+}

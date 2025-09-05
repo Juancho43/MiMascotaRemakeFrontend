@@ -1,0 +1,12 @@
+<div class="forum-location">
+
+@if (!this.locationsResource.isLoading()) {
+  @let locations = this.locationsResource.value()!.data!;
+  <app-location-list
+    [forumSlug]="this.slug()"
+    [locations]="locations"
+  />
+} @else {
+  <app-locations-list-skeleton/>
+}
+</div>

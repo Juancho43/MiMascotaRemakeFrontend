@@ -1,0 +1,122 @@
+@use '../../../core/styles/mixins';
+@use '../../../core/styles/detail';
+.skeleton {
+  @include detail.detail();
+  @include mixins.skeleton();
+
+}
+
+// Título skeleton
+.skeleton-title {
+  height: 2.5rem;
+  width: 180px;
+  margin-bottom: 1.5rem;
+}
+
+// Container de información skeleton
+.skeleton-info {
+  @include mixins.flex-column();
+  gap: 0.5rem;
+  width: 100%;
+  align-items: center;
+  margin-bottom: 1.5rem;
+}
+
+// Items de información skeleton
+.skeleton-info-item {
+  height: 1rem;
+  border-radius: 6px;
+
+  &:nth-child(1) { width: 140px; } // Nombre
+  &:nth-child(2) { width: 200px; } // Email
+  &:nth-child(3) { width: 160px; } // Teléfono
+  &:nth-child(4) { width: 150px; } // Ubicación
+  &:nth-child(5) { width: 180px; } // Fecha de registro
+}
+
+// Container de botones skeleton
+.skeleton-buttons {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+}
+
+// Botones skeleton
+.skeleton-button {
+  height: 2.5rem;
+  width: 120px;
+  border-radius: 6px;
+}
+
+// Loading dots
+.loading-dots {
+  display: flex;
+  gap: 0.5rem;
+  margin-top: 1rem;
+}
+
+.dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background-color: #a0aec0;
+  animation: pulse 1.4s ease-in-out infinite both;
+
+  &:nth-child(1) { animation-delay: -0.32s; }
+  &:nth-child(2) { animation-delay: -0.16s; }
+  &:nth-child(3) { animation-delay: 0s; }
+}
+
+@keyframes pulse {
+  0%, 80%, 100% {
+    transform: scale(0);
+    opacity: 0.5;
+  }
+  40% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+// Responsive
+@media only screen and (max-width: 500px) {
+  .skeleton{
+    @include mixins.responsive-contenedor();
+
+  }
+  .user-detail {
+    padding: 1rem;
+
+  }
+
+  h2 {
+    font-size: 1.5rem;
+  }
+
+  .user-actions {
+    flex-direction: column;
+    width: 100%;
+
+    .action-button {
+      width: 100%;
+      justify-content: center;
+    }
+  }
+
+  .skeleton-buttons {
+    flex-direction: column;
+    width: 100%;
+
+    .skeleton-button {
+      width: 100%;
+    }
+  }
+
+  .skeleton-info-item {
+    width: 90% !important;
+  }
+
+  .skeleton-title {
+    width: 80%;
+  }
+}

@@ -1,0 +1,23 @@
+@let select = true;
+@let forums = this.forumsResource.value()!.data!;
+
+
+@for (forum of forums; track forum.id) {
+ <p>{{forum.name}}</p>
+  @if (select){
+    <app-button
+      tooltip="Ver todas las publicaciones de {{forum.name}}."
+      route="/forum/view/{{forum.slug}}"
+      icon="assets/view-grid.svg"
+      label="Ver publicaciones de {{forum.name}}"
+    />
+    <app-button
+      tooltip="Crear publicacion{{forum.name}}."
+      route="/post/new/{{forum.slug}}"
+      icon="assets/view-grid.svg"
+      label="Crear publicacion en {{forum.name}}"
+    />
+
+  }
+
+}

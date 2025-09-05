@@ -1,0 +1,31 @@
+@let forum = this.forum();
+@let editable = this.editable();
+@let location = this.location();
+<div class="forum-detail">
+  <h2>{{forum.name}}</h2>
+  <p>{{forum.description}}</p>
+  @if (location) {
+    <p>Ciudad : {{location.city}}</p>
+  }
+  @if (editable) {
+    <div class="menu">
+      <app-button
+        route="/forum/edit/{{forum.slug}}"
+        label="Editar foro"
+        icon="assets/edit.svg"
+      />
+      <app-button
+        (click)="openDeleteDialog()"
+        label="Eliminar foro"
+        icon="assets/delete.svg"
+      />
+    </div>
+  }
+  <app-button
+    (click)="open()"
+    label="Ver publicaciones por localidad"
+    icon="assets/location.svg"
+    [route]="undefined"
+  />
+
+</div>

@@ -3,12 +3,7 @@
 
 
 article{
-  @include mixins.flex-column;
-  align-items: center;
-  justify-content: center;
-  min-height: 3em;
-  width: 100%;
-  border-bottom: 3px dashed var(--c3);
+
 
 }
 

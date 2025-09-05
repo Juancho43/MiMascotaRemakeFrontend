@@ -1,14 +1,14 @@
-import {Component} from '@angular/core';
+import {Component, inject} from '@angular/core';
 import {EntryForm} from '@app/components/entries/entry-form/entry-form';
-import {Button} from '@app/components/shared/button/button';
 import {BackButton} from '@app/components/shared/back-button/back-button';
+import {Router} from '@angular/router';
+import {JournalContextService} from '@services/context/journal-context-service';
 
 
 @Component({
   selector: 'app-entry-new',
   imports: [
     EntryForm,
-    Button,
     BackButton
   ],
   templateUrl: './entry-new.html',
@@ -17,9 +17,13 @@ import {BackButton} from '@app/components/shared/back-button/back-button';
 })
 export default class EntryNew {
 
-  protected readonly navigator = window.history;
+  private router = inject(Router);
+  private journalContext = inject(JournalContextService);
 
-  onBackHandler() {
-    this.navigator.back();
+  onSubmittedHandler()
+  {
+    const slug = this.journalContext.getJournal()().journal_slug!;
+    this.router.navigate(['/app/journals/', slug, 'view'] );
   }
+
 }

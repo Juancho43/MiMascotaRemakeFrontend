@@ -1,0 +1,33 @@
+@use '../../../core/styles/mixins';
+@use '../../../core/styles/detail';
+@use '../../../core/styles/menus';
+div.forum-detail{
+  @include mixins.flex-column();
+  @include detail.detail();
+  align-items: center;
+  justify-content: center;
+
+  padding: 1rem;
+}
+
+h2 {
+  font-size: 2.5rem;
+  font-weight: 800;
+  color: #1a202c;
+  margin: 0;
+
+  line-height: 1.2;
+}
+p {
+  font-size: 1.1rem;
+  color: #4a5568;
+  line-height: 1.6;
+  margin: 0;
+}
+
+@media only screen and (max-width: 500px) {
+  .forum-detail{
+    @include mixins.responsive-contenedor();
+  }
+
+}

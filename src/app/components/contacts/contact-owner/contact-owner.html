@@ -1,0 +1,8 @@
+@if (!this.ownerRequest.isLoading()){
+  @let requests = this.ownerRequest.value()!.data!;
+  @for (request of requests; track $index){
+    <app-contact-request-component
+      [request]="request"
+    />
+  }
+}

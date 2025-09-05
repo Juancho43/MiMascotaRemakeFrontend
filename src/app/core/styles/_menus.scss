@@ -18,3 +18,14 @@
     display: block;
   }
 }
+.overlay{
+  background-color: var(--c1);
+  border-radius:var(--border-radius);
+
+}
+@media  screen and (max-width: 768px) {
+
+  .menu{
+    @include mixins.flex-column();
+  }
+}

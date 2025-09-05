@@ -1,0 +1,35 @@
+@use '../../../core/styles/mixins';
+@use '../../../core/styles/detail';
+
+.post-item{
+  @include mixins.flex-row();
+  @include detail.detail;
+  justify-content:flex-start;
+  padding: 3px;
+  width: var(--width);
+  overflow-y:auto;
+  max-height: 450px;
+  margin:10px;
+}
+.post-data{
+  @include mixins.flex-column();
+  gap:10px;
+}
+img {
+  float:left;
+  max-width: 30%;
+  margin: 5px;
+  border-radius:var(--border-radius);
+  height: 400px;
+}
+
+@media only screen and (max-width: 500px) {
+  .post-item{
+    @include mixins.responsive-contenedor();
+
+  }
+  img{
+    align-self:center;
+  }
+
+}

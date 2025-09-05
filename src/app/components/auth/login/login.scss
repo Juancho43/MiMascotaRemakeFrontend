@@ -1,8 +1,4 @@
 @use '../../../core/styles/form';
 @use '../../../core/styles/mixins' as *;
-section{
-  container-name:page;
-  container-type: inline-size;
-  @include form-container;
-}
+
 

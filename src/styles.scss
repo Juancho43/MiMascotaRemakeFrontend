@@ -1,4 +1,5 @@
 /* You can add global styles to this file, and also import other style files */
+@use './app/core/styles/mixins';
 
 @import url('https://fonts.googleapis.com/css2?family=Roboto+Condensed:ital,wght@0,700;1,300&display=swap');
 @import url('https://fonts.googleapis.com/css?family=Poppins:400,500,600,700&display=swap');
@@ -9,7 +10,8 @@
   --c3:#40352b;
   --f1:'Roboto Condensed';
   --f2:'Poppins';
-
+  --width: 70dvw;
+  --border-radius: 10px;
 }
 *{
   padding: 0;
@@ -35,18 +37,7 @@ body {
   font-family: var(--f2), "Helvetica Neue", sans-serif;
 
 }
-article, section {
 
-  color:black;
-  font-weight:1000;
-  padding: 0;
-  margin: 0;
-  background: none;
-
-}
-section{
-  width: 80dvw;
-}
 
 
 .cdk-overlay-backdrop {

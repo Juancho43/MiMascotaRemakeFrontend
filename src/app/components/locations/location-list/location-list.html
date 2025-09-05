@@ -1,0 +1,13 @@
+@let locations = this.currentLocations();
+@let slug = this.forumSlug()!;
+<app-location-search
+  (result)="this.currentLocations.set($event)"
+/>
+@for (location of locations; track $index) {
+  <app-location
+    (selected)="onSelectHandler($event)"
+    [location]="location"
+    [forumSlug]="slug!"
+  />
+  <br>
+}

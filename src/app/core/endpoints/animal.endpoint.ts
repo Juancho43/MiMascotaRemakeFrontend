@@ -1,4 +1,4 @@
 export const animalEndpoint={
-  'images' : '/animal/images/:id',
+  'images' : '/animal/images/:slug',
   'deleteImage': '/animal/delete/image',
 }

@@ -29,8 +29,8 @@ export const routes: Routes = [
         {
           path: 'password',
           loadComponent: () => import('./components/auth/password-reset/password-reset'),
-          canActivate:[authGuard]
         },
+      //TODO: Password reset, and change password
         {
           path:'user',
           loadComponent: () => import('./components/auth/user/user'),
@@ -60,10 +60,10 @@ export const routes: Routes = [
             },
             {
               path: 'new',
-              loadComponent: () => import('./components/journals/journal-form/journal-form'),
+              loadComponent: () => import('./components/journals/journal-create/journal-create'),
             },
             {
-              path: ':id',
+              path: ':slug',
               loadComponent: () => import('./components/journals/journal-view/journal-view'),
 
               children:[
@@ -73,11 +73,11 @@ export const routes: Routes = [
                 },
                 {
                   path:'image',
-                  loadComponent: () => import('./components/journals/animal-image-form/animal-image-form').then( m => m.AnimalImageForm),
+                  loadComponent: () => import('@app/components/animals/animal-image-form/animal-image-form'),
                 },
                 {
                   path: 'edit',
-                  loadComponent: () => import('./components/journals/journal-form/journal-form'),
+                  loadComponent: () => import('./components/journals/journal-edit/journal-edit'),
                 },
               ]
             }
@@ -95,6 +95,70 @@ export const routes: Routes = [
             loadComponent: () => import('./components/entries/entry-edit/entry-edit'),
           },
         ]
+      },
+      {
+        path: 'contacts',
+        loadComponent: () => import('./components/contacts/contact-requests-page/contact-requests-page'),
+        children:[
+          {
+            path:'owner',
+            loadComponent: () => import('./components/contacts/contact-owner/contact-owner'),
+          },
+          {
+            path:'requests',
+            loadComponent: () => import('./components/contacts/contact-request/contact-request'),
+
+          },
+        ]
+      },
+    ]
+  },
+  {
+    path:'forum',
+    loadComponent: () => import('./components/forums/forum-page/forum-page'),
+    children:[
+      {
+        path: 'all',
+        loadComponent: () => import('./components/forums/forum-all/forum-all'),
+      },
+      {
+        path: 'view/:slug/:page/:limit',
+        loadComponent: () => import('./components/forums/forum-view/forum-view'),
+      },
+      {
+        path: 'view/location/:slug/:page/:limit/:locationSlug',
+        loadComponent: () => import('./components/forums/forum-view/forum-view'),
+      },
+
+      {
+        path: 'new',
+        loadComponent: () => import('./components/forums/forum-new/forum-new'),
+      },
+      {
+        path: 'edit/:slug',
+        loadComponent: () => import('./components/forums/forum-edit/forum-edit'),
+      }
+    ]
+  },
+  {
+    path:'post',
+    loadComponent: ()=> import('./components/posts/post-page/post-page'),
+    children:[
+      {
+        path: 'new/:slug',
+        loadComponent: () => import('./components/posts/post-new/post-new'),
+      },
+      {
+        path: 'edit/:id',
+        loadComponent: () => import('./components/posts/post-edit/post-edit'),
+      },
+      {
+        path: 'view/:id',
+        loadComponent: () => import('./components/posts/post-detail/post-detail'),
+      },
+      {
+        path:'by/user/all',
+        loadComponent: () => import('./components/posts/user-posts/user-posts'),
       }
     ]
   },

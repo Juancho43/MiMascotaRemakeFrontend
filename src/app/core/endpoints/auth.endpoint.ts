@@ -2,10 +2,12 @@ export const authEndpoint = {
   register: '/user/register',
   login: '/user/login',
   logout: '/user/logout',
-  validate: '/user/validate/:email',
+  validate: '/user/validate',
   passwordReset: '/user/password/:id',
   user: '/user',
-  userEdit: '/user/edit/:id',
+  userIsAdmin: '/user/role',
+  userIsLoggedIn: '/user/token',
+  userEdit: '/user/edit',
   userDelete: '/user/delete/:id',
 
 };

@@ -1,0 +1,6 @@
+<h2>Tus publicaciones</h2>
+@let posts = this.postsResponse.value()!.data!;
+<app-post-list
+  [posts]="posts"
+  [owner]="true"
+/>

@@ -5,9 +5,9 @@ import {Pipe, PipeTransform} from '@angular/core';
 })
 export class SizePipe implements PipeTransform {
 
-  transform(value: 'extra-small' | 'small' | 'medium' | 'large' | 'extra-large', ...args: unknown[]): unknown {
+  transform(value: 'tiny' | 'small' | 'medium' | 'large' | 'extra-large', ...args: unknown[]): unknown {
     switch (value) {
-      case 'extra-small':
+      case 'tiny':
         return 'Diminuto';
       case 'small':
         return 'Pequeño';

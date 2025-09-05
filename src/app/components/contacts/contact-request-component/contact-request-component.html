@@ -1,0 +1,72 @@
+@let request = this.request();
+<div class="request-card">
+  <div class="card-header">
+    <h3 class="post-title">{{ request.post.title }}</h3>
+    <span class="status" [ngClass]="getStatusClass(request.status)">
+              {{ request.status }}
+            </span>
+  </div>
+
+  <div class="card-content">
+    <div class="info-section">
+      <div class="info-item">
+        <span class="label">Animal:</span>
+        <span class="value">{{ request.post.animal }}</span>
+      </div>
+
+      <div class="info-item">
+        <span class="label">Solicitante:</span>
+        <span class="value">{{ request.requester.name }}</span>
+      </div>
+
+      <div class="info-item">
+        <span class="label">Propietario:</span>
+        <span class="value">{{ request.owner.name }}</span>
+      </div>
+      @if (request.owner.telephone) {
+
+      <div class="info-item" >
+        <span class="label">Teléfono:</span>
+        <span class="value">{{ request.owner.telephone }}</span>
+      </div>
+      }
+    </div>
+
+    <div class="date-section">
+              <span class="created-date">
+                Solicitud enviada: {{ request.createdAt | date}}
+              </span>
+      @if (request.updatedAt) {
+
+        <span  class="updated-date">
+            Actualizada: {{ request.updatedAt |date }}
+        </span>
+      }
+    </div>
+  </div>
+  @if (request.status === 'Pending' && !this.requester()) {
+
+  <div class="card-actions" >
+    <button
+      class="btn btn-reject"
+      (click)="onReject(request)"
+      type="button">
+      Rechazar
+    </button>
+    <button
+      class="btn btn-accept"
+      (click)="onAccept(request)"
+      type="button">
+      Aceptar
+    </button>
+  </div>
+  }
+  @if(this.requester()) {
+    <button
+      class="btn btn-reject"
+      (click)="onReject(request)"
+      type="button">
+     Cancelar
+    </button>
+  }
+</div>

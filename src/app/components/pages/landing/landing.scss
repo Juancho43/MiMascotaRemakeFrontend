@@ -1,16 +1,14 @@
+@use '../../../core/styles/mixins';
 .landing{
-  display: flex;
-  flex-direction: column;
+  @include mixins.flex-column();
   justify-content: center;
   align-items: center;
   margin-bottom: 4em;
-  container-name:landing;
-  container-type: inline-size;
 }
 
 .Contenedor{
-  display: flex;
-  width: 85dvw;
+  @include mixins.flex-row();
+  width: 70dvw;
   height: 200px;
   justify-content: space-around;
   align-items: center;
@@ -18,7 +16,6 @@
   border-radius: 10px;
   margin: 1em;
   padding: 1em;
-
 }
 .Contenedor a,p,h2{
   color:black;
@@ -30,24 +27,22 @@ a:hover{
   height: 150px;
 }
 
-.uno{
+.uno {
   background-color: #FE9898;
-}
-.dos{
-  background-color: #B980F0;
-}
-.uno:hover{
-  background: radial-gradient(#FE9898, #FF7D32);
-}
-.dos:hover{
-
-  background: radial-gradient(#FFF, #B980F0);
-}
-
-@container landing (width >  900px) {
-
-  .Contenedor{
-    width: 70dvw;
+  &:hover {
+    background: radial-gradient(#FE9898, #FF7D32);
   }
-
 }
+.dos {
+  background-color: #B980F0;
+
+  &:hover {
+    background: radial-gradient(#FFF, #B980F0);
+  }
+}
+@media only screen and (max-width: 500px) {
+  .Contenedor {
+    @include mixins.responsive-contenedor;
+  }
+}
+

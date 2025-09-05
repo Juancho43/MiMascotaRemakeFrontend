@@ -1,5 +1,4 @@
 <div
-  [routerLink]="['/app/journals/', journal().journal_id!, 'view']"
   class="journal-card"
 >
   <h3>{{journal().name}}</h3>
@@ -12,6 +11,7 @@
       height="100"
       priority
     >
+<!--    TODO: ver overflow de la imagen-->
   }@else{
     <img
       ngSrc="assets/photo_upload.svg"

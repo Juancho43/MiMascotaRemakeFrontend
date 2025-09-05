@@ -1,6 +1,6 @@
-import { TestBed } from '@angular/core/testing';
+import {TestBed} from '@angular/core/testing';
 
-import { EntryContext } from './entry-context.service';
+import {EntryContext} from './entry-context.service';
 
 describe('EntryContex', () => {
   let service: EntryContext;

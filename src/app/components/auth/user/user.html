@@ -1,47 +1,28 @@
-
-
-@let user = this.userResource.value()!.data;
-@if (user != undefined) {
-
-
-<section>
-
-  <app-home-button/>
-
-  <div>
+@if (this.userResource.isLoading()) {
+  <app-user-skeleton/>
+} @else {
+  @let user = this.userResource.value()!.data!;
+  <div class="user-detail">
     <h2 class="Titulo">Mi cuenta</h2>
+    <ul>
+      <li>Nombre: {{user.name}}</li>
+      <li>Mail: {{user.email}}</li>
+      <li>Télefono: {{user.telephone}}</li>
+      <li>Ubicación: {{user.location}}</li>
+      <li>Fecha de registro: {{user.createdAt | date}}</li>
+    </ul>
+    <!--      <h2>Notificar: sí</h2>-->
+    <div class="menu">
+      <app-button
+        route="/auth/edit"
+        label="Editar cuenta"
+        icon="assets/edit.svg"
+      />
+      <app-button
+        (click)="openDeleteDialog()"
+        label="Eliminar cuenta"
+        icon="assets/delete-profile.svg"
+      />
+    </div>
   </div>
-  <div>
-    <article class="Datos">
-      <h2 class="Titulo">Datos</h2>
-
-      <ul>
-        <li>Nombre: {{user.name}}</li>
-        <li>Mail: {{user.email}}</li>
-        <li>Télefono: {{user.telephone}}</li>
-        <li>Ubicación: {{user.location}}</li>
-        <li>Fecha de registro: {{user.createdAt | date}}</li>
-      </ul>
-<!--      <h2>Notificar: sí</h2>-->
-
-
-
-    </article>
-    <article>
-      <h2 class="Titulo">Opciones</h2>
-      <div class="menu">
-        <app-button
-         route="/auth/edit"
-         label="Editar cuenta"
-         icon="assets/edit.svg"
-        />
-        <app-button
-          (click)="openDeleteDialog()"
-         label="Eliminar cuenta"
-         icon="assets/delete-profile.svg"
-         />
-      </div>
-    </article>
-  </div>
-</section>
 }

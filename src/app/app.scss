@@ -1,3 +1,6 @@
+@use '../../src/app/core/styles/mixins';
+
+@import "../../node_modules/bootstrap/scss/bootstrap";
 .site{
   display:grid;
   min-height:100dvh;
@@ -5,12 +8,22 @@
   grid-template-columns: minmax(0,1fr);
 }
 main{
-
+  @include mixins.flex-column();
+  align-content:center;
+  justify-content:center;
   margin:auto;
   height: 100%;
-  max-width: 1200px;
-  min-width: 320px;
+  //max-width: 1200px;
+  //min-width: 320px;
   padding: 0 1rem;
 
+
+}
+
+section{
+  margin-top:10px;
+ width:100%;
+  @include mixins.flex-column();
+  align-items:flex-start;
 
 }

@@ -17,11 +17,19 @@ export class AuthService {
   private http = inject(HttpClient);
   private notification = inject(NotificationService);
 
+  isAdmin() {
+    const url = environment.api_url + authEndpoint.userIsAdmin;
+    return this.http.get<ApiResponse<boolean>>(url,{context:checkToken()});
+  }
+  isLoggedIn() {
+    const url = environment.api_url + authEndpoint.userIsLoggedIn;
+    return this.http.get<ApiResponse<boolean>>(url,{context:checkToken()});
+  }
 
   login(data : LoginData) {
     return this.http.post<ApiResponse<{ token : string }>>(environment.api_url + authEndpoint.login, data).pipe(
       tap(() => {
-        this.notification.showSuccesNotification('Bienvenido de nuevo');
+        this.notification.showSuccessNotification('Bienvenido de nuevo');
       }),
       catchError(() => {
         this.notification.showErrorNotification();
@@ -37,7 +45,7 @@ export class AuthService {
       )
       .pipe(
         tap(() => {
-          this.notification.showSuccesNotification('Hasta luego');
+          this.notification.showSuccessNotification('Hasta luego');
         }),
         catchError(() => {
           this.notification.showErrorNotification();
@@ -52,7 +60,7 @@ export class AuthService {
       })
       .pipe(
         tap(() => {
-          this.notification.showSuccesNotification('Contraseña actualizada correctamente');
+          this.notification.showSuccessNotification('Contraseña actualizada correctamente');
         }),
         catchError(() => {
           this.notification.showErrorNotification();
@@ -68,7 +76,7 @@ export class AuthService {
       environment.api_url + authEndpoint.register, data
     ).pipe(
       tap(() => {
-        this.notification.showSuccesNotification("Revisa tu correo para validar tu cuenta");
+        this.notification.showSuccessNotification("Revisa tu correo para validar tu cuenta");
       }),
       catchError(() => {
         this.notification.showErrorNotification();
@@ -85,7 +93,7 @@ export class AuthService {
       )
       .pipe(
         tap(() => {
-          this.notification.showSuccesNotification('Cuenta validada correctamente');
+          this.notification.showSuccessNotification('Cuenta validada correctamente');
         }),
         catchError(() => {
           this.notification.showErrorNotification();
@@ -111,7 +119,7 @@ export class AuthService {
       context: checkToken(),
     }).pipe(
       tap(() => {
-        this.notification.showSuccesNotification('Usuario actualizado correctamente');
+        this.notification.showSuccessNotification('Usuario actualizado correctamente');
       }),
       catchError(() => {
         this.notification.showErrorNotification();
@@ -126,7 +134,7 @@ export class AuthService {
       body: data,
     }).pipe(
       tap(() => {
-        this.notification.showSuccesNotification('Usuario eliminado correctamente');
+        this.notification.showSuccessNotification('Usuario eliminado correctamente');
       }),
       catchError(() => {
         this.notification.showErrorNotification();

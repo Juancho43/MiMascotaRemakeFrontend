@@ -8,7 +8,8 @@ import {entryEndpoint} from '@core/endpoints/entry.endpoint';
 import {checkToken} from '@core/other/token.interceptor';
 import {catchError, Observable, of, tap} from 'rxjs';
 import {ICrudeable} from '@model/ICrudeable';
-import { ApiResponseCollection } from "@app/core/interfaces/ApiResponseCollection";
+import {ApiResponseCollection} from "@app/core/interfaces/ApiResponseCollection";
+import {EventService} from '@services/context/event-service';
 
 @Injectable({
   providedIn: 'root'
@@ -17,6 +18,7 @@ export class EntryService implements ICrudeable<Entry> {
 
   private http = inject(HttpClient);
   private notification = inject(NotificationService);
+  private eventContext = inject(EventService);
 
   public create(item : Entry): Observable<ApiResponse<Entry>> {
     return this.http.post<ApiResponse<Entry>>
@@ -26,7 +28,7 @@ export class EntryService implements ICrudeable<Entry> {
       {context:checkToken()}
     ).pipe(
       tap(() => {
-        this.notification.showSuccesNotification('Entry created successfully');
+        this.notification.showSuccessNotification('Entry created successfully');
       }),
       catchError((error) => {
         this.notification.showErrorNotification();
@@ -43,7 +45,7 @@ export class EntryService implements ICrudeable<Entry> {
       {context:checkToken()}
     ).pipe(
       tap(() => {
-        this.notification.showSuccesNotification('Entry updated successfully');
+        this.notification.showSuccessNotification('Entry updated successfully');
       }),
       catchError((error) => {
         this.notification.showErrorNotification();
@@ -55,7 +57,15 @@ export class EntryService implements ICrudeable<Entry> {
     return this.http.delete(
       environment.api_url + entryEndpoint.delete.replace(':id',id),
       {context: checkToken()}
-
+    ).pipe(
+      tap(() => {
+        this.notification.showSuccessNotification('Entry deleted successfully');
+        this.eventContext.emit<Entry>({data: {id} as Entry, timestamp: new Date(), action: 'delete', entity:'entry'});
+      }),
+      catchError((error) => {
+        this.notification.showErrorNotification();
+        return of();
+      })
     );
   }
   getAll(): Observable<ApiResponseCollection<Entry[]>> {

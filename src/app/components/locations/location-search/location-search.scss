@@ -1,0 +1,7 @@
+@use '../../../core/styles/mixins';
+
+form{
+  @include mixins.flex-row;
+  width:100%;
+
+}

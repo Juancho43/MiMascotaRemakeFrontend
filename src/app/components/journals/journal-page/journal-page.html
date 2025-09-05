@@ -1,20 +1,15 @@
-<h3 class="Contenedor__subtitulo">Libretas: </h3>
-<div class="menu">
-  <app-button
-    tooltip="Crear una nueva libreta."
-    route="new"
-    icon="assets/plus.svg"
-    label="Nueva libreta"
-  />
-  <app-button
-    tooltip="Ver todas las libretas."
-    route="all"
-    icon="assets/view-grid.svg"
-    label="Ver libretas"
-  />
-  </div>
 
-  <section>
-    <router-outlet/>
-  </section>
+@if (this.checkViewPort()) {
+  <app-button
+    label="Ver menú de libretas."
+    icon="assets/menu.svg"
+    [route]="undefined"
+    (click)="openMenu()"
+  />
+}@else{
+  <app-journal-menu/>
+}
+<section>
+  <router-outlet/>
+</section>
 

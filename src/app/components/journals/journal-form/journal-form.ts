@@ -1,9 +1,7 @@
-import {Component, inject, OnInit, signal} from '@angular/core';
+import {Component, effect, inject, input, OnInit, output} from '@angular/core';
 import {FormControl, FormGroup, ReactiveFormsModule} from '@angular/forms';
 import {JournalService} from '@http/journal-service';
 import {Journal} from '@model/model/journal';
-import {Router} from '@angular/router';
-import {JournalContextService} from '@services/context/journal-context-service';
 
 @Component({
   selector: 'app-journal-form',
@@ -14,37 +12,41 @@ import {JournalContextService} from '@services/context/journal-context-service';
   standalone: true,
   styleUrl: './journal-form.scss'
 })
-export default class JournalForm  implements OnInit {
+export class JournalForm  implements OnInit {
   private service = inject(JournalService);
-  private journalContext = inject(JournalContextService);
-
-  private router = inject(Router);
-  edit = signal(false);
+  journalToEdit = input<Journal>();
+  edit = input(false);
+  onSubmitted = output<Journal>();
   journalForm = new FormGroup({
     name: new FormControl(''),
     description: new FormControl(''),
     color: new FormControl(''),
     gender: new FormControl(<'male'|'female'>'male'),
     birthdate : new FormControl(<string|null> null),
-    size: new FormControl(<'extra-small' | 'small' | 'medium' | 'large' | 'extra-large'>'medium'),
+    size: new FormControl(<'tiny' | 'small' | 'medium' | 'large' | 'extra-large'>'medium'),
     breed: new FormControl(''),
     weight: new FormControl(0),
     journal_id: new FormControl<string | undefined>(undefined),
     user_id: new FormControl<string | undefined>(undefined),
-
+//TODO: make validations
   });
 
+  constructor() {
+    effect(() => {
+    if (this.edit()) this.setForm();
+
+    });
+
+  }
   ngOnInit() {
 
-    this.edit.set(this.router.url.includes('edit'));
-    if (this.edit()) this.setForm();
+
   }
   setForm(){
-    let journal = this.journalContext.getJournal();
-    if (journal) {
 
-    let animal = journal()!.animal;
-    console.log(journal());
+    const animal = this.journalToEdit()!.animal;
+
+
       this.journalForm.patchValue({
         name: animal.name,
         description: animal.description,
@@ -53,23 +55,30 @@ export default class JournalForm  implements OnInit {
         size: animal.size || 'medium',
         breed: animal.breed || '',
         weight:animal.weight || 0,
-        journal_id: journal()!.id! ,
+        journal_id: this.journalToEdit()!.id! ,
         birthdate: animal.birthdate!,
-        user_id: journal()!.user_id!
+        user_id: this.journalToEdit()!.user_id!
       })
-    }
+
 
 
   }
   onSubmit() {
     if (!this.edit()){
-      this.service.postJournal(this.toJournalData()).subscribe();
-    }else{
-      this.service.putJournal(this.toJournalData()).subscribe({
-        next: (response) => {
-          this.router.navigate(['/journals', response.data!.journal_id]);
-        },
+      this.service.postJournal(this.toJournalData()).subscribe({
+        next: (res) => {
+          this.onSubmitted.emit(res.data!);
+        }
       });
+    }else{
+      this.service.putJournal(this.toJournalData()).subscribe(
+        {
+          next: (res) => {
+            this.onSubmitted.emit(res.data!);
+
+          }
+        }
+      );
 
     }
   }

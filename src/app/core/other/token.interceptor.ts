@@ -1,6 +1,6 @@
 import {HttpContext, HttpContextToken, HttpInterceptorFn} from '@angular/common/http';
 import {inject} from '@angular/core';
-import {Session} from '@services/utils/session';
+import {CookieService} from '@services/utils/cookie.service';
 
 const CHECK_TOKEN = new HttpContextToken<boolean>(() => false);
 
@@ -10,9 +10,9 @@ export function checkToken() {
 
 export const tokenInterceptor: HttpInterceptorFn = (req, next) => {
   if (req.context.get(CHECK_TOKEN)) {
-    const session = inject(Session);
-    const accessToken = session.getToken()!;
-    if (accessToken) {
+    const session = inject(CookieService);
+    const accessToken = session.getCookie('token');
+    if (accessToken != null) {
       const authRequest = req.clone({
         headers: req.headers.set('Authorization', `Bearer ${accessToken}`),
       });

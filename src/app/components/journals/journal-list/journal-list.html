@@ -1,12 +1,17 @@
-@let list = journalsResource.value()!.data!;
-@if (list !== undefined ){
-  <div>
+<div class="journals-list">
+  @if( journalsResource.isLoading() ){
+    <app-journal-skeleton/><app-journal-skeleton/><app-journal-skeleton/><app-journal-skeleton/>
+  }@else{
+    @let list = journalsResource.value()!.data!;
+
     @for (journal of list; track $index){
       <app-journal-card
+        routerLink='/app/journals/{{journal.journal_slug}}/view'
         [journal]="journal"
       />
     } @empty {
       No hay libretas.
     }
-  </div>
-}
+  }
+</div>
+

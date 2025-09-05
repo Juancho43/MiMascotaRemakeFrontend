@@ -1,0 +1,46 @@
+@let post = this.post();
+@let owner = this.owner();
+
+<div class="post-item">
+  @if (post.animal!.path!) {
+    <img
+      [src]="environment.public_url +'/'+ post.animal!.path!"
+      alt="Foto de {{ post.animal!.name }}"
+      width="672"
+    >
+  }
+  <div class="post-data">
+    <h2>{{ post.title }}</h2>
+    <p>{{ post.content }}</p>
+    <br>
+    <p><strong>Nombre del animal:</strong> {{post.animal!.name}}</p>
+    <p><strong>Ciudad:</strong> {{post.location!.city}}</p>
+
+    <p><strong>Publicado:</strong> {{ post.createdAt | date }}</p>
+    <p><strong>Editado:</strong> {{ post.updatedAt | date }}</p>
+    @if (owner) {
+      <app-button
+        route="/post/edit/{{post.id}}"
+        label="Editar Publicación"
+        icon="assets/edit.svg"
+      />
+      <app-button
+        label="Eliminar Publicación"
+        icon="assets/delete.svg"
+        (click)="deletePost()"
+      />
+    } @else {
+      <app-button
+        label="Requerir contacto"
+        [route]="undefined"
+        (click)="openConfirmationDialogToRequire()"
+      />
+      <app-button
+        label="Reportar"
+        [route]="undefined"
+        (click)="openConfirmationDialogToReport()"
+      />
+    }
+
+  </div>
+</div>

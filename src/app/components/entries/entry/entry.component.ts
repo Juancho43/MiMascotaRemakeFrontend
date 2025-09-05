@@ -6,12 +6,16 @@ import {DialogService} from '@services/utils/dialog-service';
 import {DeleteDialog} from '@app/components/shared/delete-dialog/delete-dialog';
 import {EntryService} from '@http/entry-service';
 import {EntryContext} from '@services/context/entry-context.service';
+import {CdkContextMenuTrigger, CdkMenu, CdkMenuItem} from '@angular/cdk/menu';
 
 @Component({
   selector: 'app-entry',
   imports: [
     DatePipe,
-    Button
+    Button,
+    CdkContextMenuTrigger,
+    CdkMenu,
+    CdkMenuItem
 
   ],
   templateUrl: './entry.component.html',
@@ -29,6 +33,7 @@ export class EntryComponent {
     dialogRef.afterClosed().subscribe(result => {
       if (result) {
         this.entryService.delete(this.entry().id!).subscribe();
+
       }
     });
   }

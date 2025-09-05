@@ -1,34 +1,54 @@
 <div class="landing">
-  <a routerLink="/app/journals">
+  <a routerLink="/app/journals/all">
     <section class="Contenedor uno">
       <img src="./images/libreta.png" alt="libreta" class="Contenedor__imagen">
       <div><h2>¿Te olvidaste la libreta?</h2><p>Aquí podrás actualizar todos los detalles de tu libreta para tenerlos siempre con vos.</p></div>
     </section>
   </a>
-  <a routerLink="/forum/">
-    <section class="Contenedor dos">
-      <div><h2>¿Estás buscando una mascota?</h2><p>En este espacio podrás ver y publicar mascotas para adoptar.</p></div>
-      <img ngSrc="images/adopcion.png" width="150" height="150" alt="perro-adopcion" class="Contenedor__imagen">
-    </section>
-  </a>
-
-  <a routerLink="/forum/">
-    <section class="Contenedor uno">
-      <img ngSrc="images/perdido.png" width="150" height="150" alt="perro-perdido" class="Contenedor__imagen">
-      <div><h2>¿Se perdío tu mascota?</h2><p>Podés registrar tu anuncio acá para que otras personas lo vean.</p></div>
-    </section>
-  </a>
-  <a routerLink="/forum/">
-    <section class="Contenedor dos">
-      <div><h2>¿Tu mascota busca pareja?</h2><p>En este espacio podrás ver y publicar un anuncio para buscarle una pareja a tu mascota</p></div>
-      <img ngSrc="images/pareja.png" width="150" height="150" alt="perro-pareja" class="Contenedor__imagen">
-    </section>
-  </a>
-  <!--<a href="manual-usuario.pdf">-->
   <a>
-    <section class="Contenedor uno">
+    <section class="Contenedor dos">
       <img src="./images/manual.png" alt="libreta" class="Contenedor__imagen">
       <div><h2>¿Primera vez en el sitio?</h2><p>Con el siguiente link podrás descargar el manual de usuario para leer cómo usar la página.<a href="manual-usuario.pdf">Manual de usuario</a></p></div>
     </section>
   </a>
+  @if (this.forumResource.isLoading()) {
+
+  } @else {
+    @let forums = this.forumResource.value()!.data!;
+    @for (forum of forums; track $index) {
+      <a [routerLink]="'/forum/view/' + forum.slug + '/1/10'">
+        <section class="Contenedor" [ngClass]="{'dos': $odd, 'uno': $even}">
+          <div><h2>{{ forum.name }}</h2><p>{{ forum.description }}</p></div>
+          @if (forum.image){
+            <img [ngSrc]=" environment.public_url +'/' +forum.image " width="150" height="150" alt="{{ forum.name }}" class="Contenedor__imagen">
+          }@else{
+            <img ngSrc="assets/forum.svg" width="150" height="150" alt="{{ forum.name }}" class="Contenedor__imagen">
+          }
+
+        </section>
+
+      </a>
+    }
+  }
+<!--  <a routerLink="/forum/view/adopcion/1/10">-->
+<!--    <section class="Contenedor dos">-->
+<!--      <div><h2>¿Estás buscando una mascota?</h2><p>En este espacio podrás ver y publicar mascotas para adoptar.</p></div>-->
+<!--      <img ngSrc="images/adopcion.png" width="150" height="150" alt="perro-adopcion" class="Contenedor__imagen">-->
+<!--    </section>-->
+<!--  </a>-->
+
+<!--  <a routerLink="/forum/view/me-perdi/1/10">-->
+<!--    <section class="Contenedor uno">-->
+<!--      <img ngSrc="images/perdido.png" width="150" height="150" alt="perro-perdido" class="Contenedor__imagen">-->
+<!--      <div><h2>¿Se perdío tu mascota?</h2><p>Podés registrar tu anuncio acá para que otras personas lo vean.</p></div>-->
+<!--    </section>-->
+<!--  </a>-->
+<!--  <a routerLink="/forum/view/busco-pareja/1/10">-->
+<!--    <section class="Contenedor dos">-->
+<!--      <div><h2>¿Tu mascota busca pareja?</h2><p>En este espacio podrás ver y publicar un anuncio para buscarle una pareja a tu mascota</p></div>-->
+<!--      <img ngSrc="images/pareja.png" width="150" height="150" alt="perro-pareja" class="Contenedor__imagen">-->
+<!--    </section>-->
+<!--  </a>-->
+  <!--<a href="manual-usuario.pdf">-->
+
 </div>

@@ -1,14 +1,17 @@
-.pagination {
-  ul{
-  width: 100%;
-  list-style: none;
-  display: flex;
-  gap: 0.5rem;
-  padding: 0;
 
+.pagination {
+  ul {
+    width: 100%;
+    list-style: none;
+    display: flex;
+    gap: 0.5rem;
+    padding: 0;
+    margin: 0;
+    justify-content: center;
   }
+
   li {
-    button{
+    button {
       display: block;
       padding: 0.5rem 0.75rem;
       border: 1px solid #ddd;
@@ -17,19 +20,28 @@
       text-decoration: none;
       cursor: pointer;
       background: #fff;
-      transition: background 0.2s;
-    }
+      transition: all 0.2s ease;
+      font-size: 14px;
+      min-width: 40px;
 
-    button:hover,button.active {
-      background: var(--c1);
-      color: #fff;
-      border-color: var(--c1);;
-    }
+      &:hover:not(.disabled) {
+        background: var(--c1);
+        color: #fff;
+        border-color: var(--c1);
+      }
 
-    button.disabled {
-      color: #aaa;
-      cursor: not-allowed;
-      background: #f9f9f9;
+      &.active {
+        background: var(--c1);
+        color: #fff;
+        border-color: var(--c1);
+      }
+
+      &.disabled {
+        color: #aaa;
+        cursor: not-allowed;
+        background: #f9f9f9;
+        border-color: #e0e0e0;
+      }
     }
   }
 }

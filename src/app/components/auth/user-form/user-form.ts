@@ -2,14 +2,16 @@ import {Component, effect, inject, input, output} from '@angular/core';
 import {FormControl, FormGroup, ReactiveFormsModule, Validators} from '@angular/forms';
 import {Session} from '@services/utils/session';
 import {RegisterData} from '@model/auth/RegisterData';
-import {LocationPicker} from '@app/components/shared/location-picker/location-picker';
+import {LocationPicker} from '@app/components/locations/location-picker/location-picker';
 import {User} from '@model/auth/User';
+import {RouterLink} from '@angular/router';
 
 @Component({
   selector: 'app-user-form',
   imports: [
     ReactiveFormsModule,
-    LocationPicker
+    LocationPicker,
+    RouterLink
   ],
   templateUrl: './user-form.html',
   styleUrl: './user-form.scss'
@@ -60,7 +62,7 @@ export class UserForm {
      name: this.userForm.get('name')?.value || '',
       email: this.userForm.get('email')?.value || '',
       telephone: this.userForm.get('phone')?.value || '',
-
+      role : this.userToEdit()?.role!,
       latitude: this.userForm.get('latitude')?.value || 0,
       longitude: this.userForm.get('longitude')?.value || 0,
     }

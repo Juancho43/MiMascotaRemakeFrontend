@@ -8,6 +8,10 @@ export const serverRoutes: ServerRoute[] = [
   {
     path: 'app',
     renderMode: RenderMode.Server,
+  },
+  {
+    path: 'forum',
+    renderMode: RenderMode.Server,
   }
   ,
   {

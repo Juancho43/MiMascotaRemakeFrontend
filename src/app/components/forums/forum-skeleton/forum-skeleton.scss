@@ -1,0 +1,99 @@
+@use '../../../core/styles/mixins';
+@use '../../../core/styles/detail';
+
+.forum-detail-skeleton {
+
+  @include mixins.flex-column();
+  @include detail.detail;
+  align-items: center;
+  justify-content: center;
+  width:var(--width);
+  padding: 1rem;
+}
+
+// Base skeleton animation
+.skeleton {
+@include mixins.skeleton();
+}
+
+
+
+// Title skeleton - matches h2 styles
+.skeleton-title {
+  height: 3rem; // Approximates font-size: 2.5rem with line-height: 1.2
+  width: 280px;
+  margin-bottom: 1rem;
+  border-radius: 8px;
+}
+
+// Description skeleton - matches p styles
+.skeleton-description {
+  height: 1.3rem; // Approximates font-size: 1.1rem with line-height: 1.6
+  margin-bottom: 0.5rem;
+  border-radius: 4px;
+
+  &.line-1 {
+    width: 100%;
+  }
+
+  &.line-2 {
+    width: 70%;
+    margin-bottom: 1.5rem;
+  }
+  &.line-2 {
+    width: 60%;
+    margin-bottom: 1.5rem;
+  }
+}
+
+
+.skeleton-button {
+  height: 2.5rem;
+  border-radius: 6px;
+  &.main {
+    width: 280px;
+    height: 2.8rem;
+    border-radius: 8px;
+    margin-top: 0.5rem;
+  }
+}
+
+// Responsive adjustments
+@media (max-width: 500px) {
+  .forum-detail-skeleton{
+    @include mixins.responsive-contenedor();
+  }
+  .skeleton-title {
+    width: 250px;
+  }
+
+  .skeleton-description {
+    &.line-1 {
+      width: 300px;
+    }
+
+    &.line-2 {
+      width: 240px;
+    }
+  }
+
+  .skeleton-button.main {
+    width: 250px;
+  }
+
+  .skeleton-menu {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .skeleton-button {
+    &.edit,
+    &.delete {
+      width: 200px;
+    }
+  }
+}
+
+@media only screen and (max-width: 500px) {
+
+}

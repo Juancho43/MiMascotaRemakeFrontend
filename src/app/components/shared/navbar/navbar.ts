@@ -14,4 +14,5 @@ import {Session} from '@services/utils/session';
 export class Navbar {
   private session = inject(Session);
   $login = this.session.$login;
+  $admin = this.session.$admin;
 }

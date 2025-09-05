@@ -1,0 +1,6 @@
+@use '../../../core/styles/detail';
+.location{
+  @include detail.detail;
+  max-width:30dvw;
+  margin:1em;
+}

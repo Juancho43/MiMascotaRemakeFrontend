@@ -1,0 +1,27 @@
+@let location = this.location();
+@let slug = this.forumSlug();
+<div class="location">
+<p>{{location.city}} - {{location.country}}<p>
+  @if (slug) {
+    <app-button
+      label="Seleccionar e ir al foro"
+      route="/forum/view/location/{{slug!}}/1/10/{{location.slug!}}"
+      icon="assets/location.svg"
+    />
+  } @else if (slug === undefined) {
+    <app-button
+      (click)="this.selected.emit(location)"
+      label="Seleccionar"
+      [route]="undefined"
+    />
+  }
+  @if($admin()){
+   <app-button
+        (click)="openDeleteDialog()"
+        label="Eliminar ubicacion"
+        icon="assets/delete.svg"
+       [route]="undefined"
+      />
+  }
+
+</div>

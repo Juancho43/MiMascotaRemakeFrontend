@@ -1,0 +1,9 @@
+@if(!this.postResource.isLoading()) {
+  @let post = this.postResource.value()!.data!;
+
+  <app-post-form
+    [isEdit]="true"
+    [postToEdit]="post"
+    (submitted)="onSubmitHandler()"
+  />
+}

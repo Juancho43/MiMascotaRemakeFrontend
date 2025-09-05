@@ -1,0 +1,4 @@
+@use '../../../core/styles/mixins';
+.Registros{
+  @include mixins.journalPart;
+}

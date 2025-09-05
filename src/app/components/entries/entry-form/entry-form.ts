@@ -1,4 +1,4 @@
-import {Component, effect, inject, input, signal} from '@angular/core';
+import {Component, computed, effect, inject, input, output} from '@angular/core';
 import {FormControl, FormGroup, ReactiveFormsModule} from '@angular/forms';
 import {EntryService} from '@http/entry-service';
 import {Entry} from '@core/interfaces/model/entry';
@@ -18,7 +18,8 @@ export class EntryForm {
   private service = inject(EntryService); // Assuming you have an EntryService to handle form submissions
   readonly edit = input<boolean>(false);
   readonly entryToEdit = input<Entry | null>(null);
-  journal = this.journalContext.getJournal();
+  journal = computed(()=>this.journalContext.getJournal()());
+  onSubmitted = output<boolean>();
   entryForm = new FormGroup({
     title: new FormControl<string | null>(null),
     content: new FormControl<string | null>(null),
@@ -33,11 +34,13 @@ export class EntryForm {
     }
 
     onSubmit() {
+    console.log(this.toEntry());
       if (!this.edit()) {
         this.service.create(this.toEntry()).subscribe();
       }else{
         this.service.update(this.toEntry()).subscribe();
       }
+     this.onSubmitted.emit(true);
     }
     toForm(entry: Entry) {
       this.entryForm.patchValue({
@@ -55,7 +58,7 @@ export class EntryForm {
         title: this.entryForm.get('title')?.value!,
         content: this.entryForm.get('content')?.value!,
         date:this.entryForm.get('date')?.value! ,
-        user_id: this.journal()!.user_id
+        user_id: this.journal()!.user_id!
       };
     }
 }

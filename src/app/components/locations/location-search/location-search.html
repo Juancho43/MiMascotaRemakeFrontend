@@ -1,0 +1,17 @@
+<form>
+  <img
+    ngSrc="assets/search.svg"
+    width="20"
+    height="20"
+    alt="search"
+  />
+  <label for="query">Buscar:</label>
+  <input
+    min="3"
+    id="query"
+    type="text"
+    name="searchInput"
+    [(ngModel)]="searchInput"
+    (keydown.enter)="onSearchChange()"
+  />
+</form>

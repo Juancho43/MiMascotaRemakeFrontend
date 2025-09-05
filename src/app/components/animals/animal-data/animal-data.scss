@@ -1,0 +1,4 @@
+@use '../../../core/styles/mixins';
+.Datos{
+  @include mixins.journalPart();
+}

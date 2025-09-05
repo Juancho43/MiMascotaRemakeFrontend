@@ -1,35 +1,18 @@
-<div class="menu">
+
+
+@if (this.checkViewPort()) {
   <app-button
-    tooltip='Ver detalles de la libreta.'
-    route="view"
-    icon="assets/view-grid.svg"
-    label="Ver libreta"
+    label="Ver menú de libretas."
+    icon="assets/menu.svg"
+     [route]="undefined"
+    (click)="openMenu()"
   />
-  <app-button
-    tooltip="Organizar fotos de la libreta."
-    route="image"
-    icon="assets/photo.svg"
-    label="Organizar fotos"
+}@else{
+  <app-journal-detail-menu
+  slug="slug"
   />
-  <app-button
-    tooltip="Editar información de la libreta."
-    route="edit"
-    icon="assets/edit.svg"
-    label="Editar información"
-  />
-  <app-button
-    tooltip="Crear un nuevo registro en esta libreta."
-    route="/app/entries/new"
-    icon="assets/plus.svg"
-    label="Crear nuevo registro"
-  />
-  <app-button
-    tooltip="Eliminar la libreta y todos sus registros."
-    (click)="openDeleteDialog()"
-    icon="assets/delete.svg"
-    label="Eliminar libreta"
-  />
-</div>
+
+}
 <div class="container">
   <router-outlet/>
 </div>

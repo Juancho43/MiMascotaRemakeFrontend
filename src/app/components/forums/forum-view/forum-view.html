@@ -1,0 +1,46 @@
+@if (
+  !this.forumResource.isLoading() &&
+  !this.locationResource.isLoading() &&
+  !this.postsResource.isLoading() &&
+  this.forumResource.value()?.data &&
+  this.locationResource.value()?.data !== undefined &&
+  this.postsResource.value()?.data
+  ) {
+  @let forum = this.forumResource.value()!.data;
+  @let posts = this.postsResource.value()!.data;
+  @let location = this.locationResource.value()!.data;
+  @let editable = this.editable();
+
+
+
+  <app-forum-detail
+    [forum]="forum!"
+    [editable]="editable"
+    [location]="location!"
+  />
+
+  <app-post-list
+    [posts]="posts!"
+  />
+
+  <app-pagination
+    [totalItems]="forum!.postsCount!"
+    [currentPage]="currentPage()"
+    [maxItems]="currentLimit()"
+    (pageChange)="changePage($event)"
+  />
+
+} @else {
+  <div class="loading-state">
+    @if (this.forumResource.isLoading() || this.locationResource.isLoading() || this.postsResource.isLoading()) {
+     <app-forum-skeleton/>
+      <app-post-skeleton/>
+      <app-post-skeleton/>
+      <app-post-skeleton/>
+      <app-post-skeleton/>
+    } @else {
+      <p>Error al cargar los datos</p>
+
+    }
+  </div>
+}

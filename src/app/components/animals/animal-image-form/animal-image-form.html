@@ -1,0 +1,16 @@
+<form [formGroup]="animalImageForm" (ngSubmit)="onSubmit()">
+  @if(this.animalImageForm.invalid ){
+  <div class="error">
+    <p>Se necesita al menos una imagen.</p>
+    <p>Para una correcta visualizacion se recomienda una imagen en formato vertical.</p>
+  </div>
+  }
+  <legend>Sube imágenes del animal</legend>
+    <input type="file" (change)="onFileChange($event, 'image')" />
+  <button type="submit">Submit</button>
+</form>
+<app-animal-images
+  [slug]="journal().journal_slug!"
+  [animalId]="journal().animal!.id!"
+/>
+

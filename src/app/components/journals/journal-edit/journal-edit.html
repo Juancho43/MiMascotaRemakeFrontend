@@ -1,0 +1,8 @@
+
+@let journal =this.journal();
+<app-journal-form
+  [edit]="true"
+  [journalToEdit]="journal"
+  (onSubmitted)="onSubmittedHandler($event)"
+/>
+

@@ -1,0 +1,48 @@
+@let edit = this.isEdit();
+<form [formGroup]="forumForm" (ngSubmit)="onSubmit()" >
+  <legend>
+    @if (!edit){
+      Crear foro:
+    } @else {
+      Editar foro:
+    }
+  </legend>
+  <label for="name">Nombre:</label>
+  <input
+    id="name"
+    type="text"
+    formControlName="name"
+  >
+  <label for="descripcion">Descripción:</label>
+  <textarea
+    id="descripcion"
+    cdkTextareaAutosize
+    cdkAutosizeMinRows="6"
+    cdkAutosizeMaxRows="12"
+    formControlName="description"
+  >
+  </textarea>
+  @if (edit) {
+    @let forum = this.forumToEdit()!;
+    <label for="icon">Imagen:</label>
+    @if(forum.image){
+      <img [ngSrc]=" environment.public_url +'/' +forum.image || 'images/foro.png' " width="150" height="150" alt="{{ forum.name }}">
+      <button (click)="deleteImage()">Eliminar</button>
+
+    }@else{
+
+      <input type="file"
+             id="icon"
+             (change)="onFileSelected($event)"
+      >
+      <button (click)="changeImage()">Subir</button>
+    }
+  }
+  <button type="submit">
+    @if (!edit){
+      Crear
+    } @else {
+      Editar
+    }
+  </button>
+</form>
