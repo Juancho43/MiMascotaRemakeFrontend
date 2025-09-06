@@ -3,6 +3,7 @@
   @for (request of requests; track $index){
     <app-contact-request-component
       [request]="request"
+      (resolve)="resolveRequest($event)"
     />
   }
 }

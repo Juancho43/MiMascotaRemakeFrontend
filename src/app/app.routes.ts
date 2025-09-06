@@ -129,7 +129,10 @@ export const routes: Routes = [
         path: 'view/location/:slug/:page/:limit/:locationSlug',
         loadComponent: () => import('./components/forums/forum-view/forum-view'),
       },
-
+      {
+        path: 'reports/:slug/:page/:limit/:locationSlug',
+        loadComponent: () => import('./components/forums/forum-reports/forum-reports'),
+      },
       {
         path: 'new',
         loadComponent: () => import('./components/forums/forum-new/forum-new'),

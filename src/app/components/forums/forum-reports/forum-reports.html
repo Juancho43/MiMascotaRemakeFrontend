@@ -1,0 +1,11 @@
+<p>forum-reports works!</p>
+@if (this.reportsResource.isLoading()) {
+  Cargando...
+}@else{
+  @let reports = this.reportsResource.value()!.data!;
+  @for (report of reports; track $index){
+    <app-reported-post
+      [report]="report"
+    />
+  }
+}

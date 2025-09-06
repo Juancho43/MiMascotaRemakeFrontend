@@ -23,7 +23,7 @@
         <span class="label">Propietario:</span>
         <span class="value">{{ request.owner.name }}</span>
       </div>
-      @if (request.owner.telephone) {
+      @if (request.owner.telephone && this.requester()) {
 
       <div class="info-item" >
         <span class="label">Teléfono:</span>
@@ -61,7 +61,7 @@
     </button>
   </div>
   }
-  @if(this.requester()) {
+  @if(request.status === 'Pending' && this.requester()) {
     <button
       class="btn btn-reject"
       (click)="onReject(request)"

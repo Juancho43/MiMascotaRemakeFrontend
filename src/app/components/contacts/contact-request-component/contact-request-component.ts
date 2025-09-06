@@ -1,5 +1,5 @@
 import {Component, input, output} from '@angular/core';
-import {ContactRequest} from '@http/contact-request-service';
+import {ContactRequest, ResolveContactRequest} from '@http/contact-request-service';
 import {DatePipe, NgClass} from '@angular/common';
 
 @Component({
@@ -14,13 +14,13 @@ import {DatePipe, NgClass} from '@angular/common';
 export class ContactRequestComponent {
   readonly request = input.required<ContactRequest>();
   readonly requester = input(false);
-  resolve = output<'Reject' | 'Accept'>();
+  resolve = output<ResolveContactRequest>();
   onReject(request: ContactRequest) {
-    this.resolve.emit('Reject');
+    this.resolve.emit({id:request.id!,status:'Rejected'});
   }
 
   onAccept(request: ContactRequest) {
-    this.resolve.emit('Accept');
+     this.resolve.emit({id:request.id!,status:'Accepted'});
   }
 
   getStatusClass(status: string) {

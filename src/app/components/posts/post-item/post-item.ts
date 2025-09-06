@@ -1,4 +1,4 @@
-import {Component, inject, input, signal} from '@angular/core';
+import {Component, computed, inject, input, signal} from '@angular/core';
 import {Post} from '@model/model/post';
 import {DatePipe} from '@angular/common';
 import {Button} from '@app/components/shared/button/button';
@@ -29,6 +29,7 @@ export class PostItem {
   private reportsService = inject(ReportsService);
   private contactRequestService = inject(ContactRequestService);
   private userContext = inject(UserContext);
+  currentUser = computed(()=> this.userContext.getUser()());
   deletePost() {
     const dialogRef= this.dialogService.openDialog(DeleteDialog,{entity:'publicación'});
     dialogRef.afterClosed().subscribe(result => {

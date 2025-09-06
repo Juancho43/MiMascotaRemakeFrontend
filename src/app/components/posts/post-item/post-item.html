@@ -1,6 +1,6 @@
 @let post = this.post();
 @let owner = this.owner();
-
+@let currentUser = this.currentUser();
 <div class="post-item">
   @if (post.animal!.path!) {
     <img
@@ -29,7 +29,7 @@
         icon="assets/delete.svg"
         (click)="deletePost()"
       />
-    } @else {
+    } @else if(post.user!.id! !== currentUser.id!) {
       <app-button
         label="Requerir contacto"
         [route]="undefined"

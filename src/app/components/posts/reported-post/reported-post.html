@@ -1,0 +1,51 @@
+@let report = this.report();
+<div class="report-card">
+  <div class="card-header">
+    <div class="status-badge" [ngClass]="getStatusClass()">
+      {{ report.status }}
+    </div>
+
+  </div>
+
+  <div class="card-body">
+    <div class="report-info">
+      <div class="section">
+        <h4>Reportado por:</h4>
+        <div class="reporter-info">
+          <span class="name">{{ report.reporter.name }}</span>
+          <span class="email">{{ report.reporter.email }}</span>
+        </div>
+      </div>
+
+      <div class="section">
+        <h4>Post reportado:</h4>
+        <div class="post-info">
+          <span class="title">{{ report.reportedPost.title }}</span>
+          <span class="slug">{{ report.reportedPost.slug }}</span>
+        </div>
+      </div>
+
+      <div class="section">
+        <h4>Fecha:</h4>
+        <span class="date">{{report.createdAt | date }}</span>
+      </div>
+    </div>
+
+    <div class="card-actions">
+      <button
+        class="btn btn-validate"
+        (click)="onValidate()"
+        [disabled]="report.status !== 'Pending'">
+        <span class="icon">✓</span>
+        Validar
+      </button>
+      <button
+        class="btn btn-cancel"
+        (click)="onCancel()"
+        [disabled]="report.status !== 'Pending'">
+        <span class="icon">✗</span>
+        Cancelar
+      </button>
+    </div>
+  </div>
+</div>

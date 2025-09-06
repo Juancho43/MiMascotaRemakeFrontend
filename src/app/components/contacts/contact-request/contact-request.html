@@ -4,6 +4,7 @@
     <app-contact-request-component
       [request]="request"
       [requester]="true"
+      (resolve)="resolveRequest($event)"
     />
   }
 }

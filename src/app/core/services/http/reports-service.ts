@@ -7,7 +7,21 @@ import {checkToken} from '@core/other/token.interceptor';
 import {tap} from 'rxjs';
 import {EventService} from '@services/context/event-service';
 import {ApiResponse} from '@model/ApiResponse';
-
+import {Entity} from '@model/model/entity';
+export interface Report extends Entity{
+  reporter: {
+    id: string;
+    name: string;
+    email: string;
+  };
+  reportedPost: {
+    id: string;
+    title: string;
+    slug: string;
+  };
+  reason: any;
+  status: string;
+}
 @Injectable({
   providedIn: 'root'
 })
@@ -49,5 +63,9 @@ export class ReportsService {
         }
       })
     )
+  }
+  getReports(data: {forumSlug : string, locationSlug: string, page : number, limit: number}){
+    const url = environment.api_url + `/reports/by/${data.locationSlug}/${data.forumSlug}/${data.page}/${data.limit}`
+    return this.http.get<ApiResponse<Report[]>>(url,{context:checkToken()});
   }
 }

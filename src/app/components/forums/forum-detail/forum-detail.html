@@ -9,6 +9,14 @@
   }
   @if (editable) {
     <div class="menu">
+      @if (location) {
+
+        <app-button
+          route="/forum/reports/{{forum.slug}}/1/10/{{location.slug}}"
+          label="Ver publicaciones reportadas"
+          icon="assets/report.svg"
+        />
+      }
       <app-button
         route="/forum/edit/{{forum.slug}}"
         label="Editar foro"
