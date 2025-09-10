@@ -1,4 +1,4 @@
-<p>forum-reports works!</p>
+
 @if (this.reportsResource.isLoading()) {
   Cargando...
 }@else{
@@ -6,6 +6,7 @@
   @for (report of reports; track $index){
     <app-reported-post
       [report]="report"
+      (result)="handleResult({reportId: report.id!, status:$event})"
     />
   }
 }

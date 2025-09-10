@@ -1,4 +1,4 @@
-import {Component, computed, effect, inject, input, linkedSignal} from '@angular/core';
+import {AfterViewInit, Component, computed, effect, inject, input, linkedSignal, OnDestroy} from '@angular/core';
 import {ForumService} from '@http/forum-service';
 import {rxResource} from '@angular/core/rxjs-interop';
 import {ForumDetail} from '@app/components/forums/forum-detail/forum-detail';
@@ -12,6 +12,10 @@ import {ForumSkeleton} from '@app/components/forums/forum-skeleton/forum-skeleto
 import {PostSkeleton} from '@app/components/posts/post-skeleton/post-skeleton';
 import {Session} from '@services/utils/session';
 import {EventService} from '@services/context/event-service';
+import {AuthService} from '@http/auth.service';
+import {UserContext} from '@services/context/user-contenxt';
+import {MetaTagsService} from '@services/utils/meta-tags.service';
+import {CanonicalUrlService} from '@services/utils/canonical-url.service';
 
 
 @Component({
@@ -26,8 +30,9 @@ import {EventService} from '@services/context/event-service';
   templateUrl: './forum-view.html',
   styleUrl: './forum-view.scss'
 })
-export default class ForumView {
-
+export default class ForumView implements OnDestroy{
+  private metadata = inject(MetaTagsService);
+  private canonical = inject(CanonicalUrlService);
   private service = inject(ForumService);
   private session = inject(Session);
   private locationService = inject(LocationService);
@@ -89,8 +94,22 @@ export default class ForumView {
       ){
         this.postsResource.reload();
       }
+      if (!this.forumResource.isLoading()){
+        const forum = this.forumResource.value()!.data!;
+        this.metadata.addTitle(`Red Social - Mi Mascota - Foro: ${forum.name}`);
+        this.metadata.addDescriptionMetaTag(forum.description);
+        this.canonical.setCanonicalLink();
+      }
     })
+
   }
+
+  ngOnDestroy(): void {
+     this.metadata.defaultMetaTags();
+     this.forumResource.destroy();
+     this.locationResource.destroy();
+
+    }
 
   changePage($event: number)
   {

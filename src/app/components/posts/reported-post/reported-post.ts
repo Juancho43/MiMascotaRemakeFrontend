@@ -1,4 +1,4 @@
-import {Component, input} from '@angular/core';
+import {Component, input, output} from '@angular/core';
 import {Report} from '@services/http/reports-service';
 import {DatePipe, NgClass} from '@angular/common';
 @Component({
@@ -11,13 +11,14 @@ import {DatePipe, NgClass} from '@angular/common';
   styleUrl: './reported-post.scss'
 })
 export class ReportedPost {
-  onCancel() {
-      throw new Error("Method not implemented.");
-  }
   readonly report = input.required<Report>();
+  result = output<string>();
+  onCancel() {
+    this.result.emit('Dismissed');
+  }
 
   onValidate() {
-
+    this.result.emit('Resolved');
   }
 
   getStatusClass() {

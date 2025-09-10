@@ -8,6 +8,7 @@ export const routes: Routes = [
   },
   {
     path:'auth',
+
     children: [
         {
           path: 'login',
@@ -131,14 +132,17 @@ export const routes: Routes = [
       },
       {
         path: 'reports/:slug/:page/:limit/:locationSlug',
+        canActivate:[authGuard],
         loadComponent: () => import('./components/forums/forum-reports/forum-reports'),
       },
       {
         path: 'new',
+        canActivate:[authGuard],
         loadComponent: () => import('./components/forums/forum-new/forum-new'),
       },
       {
         path: 'edit/:slug',
+        canActivate:[authGuard],
         loadComponent: () => import('./components/forums/forum-edit/forum-edit'),
       }
     ]

@@ -22,6 +22,11 @@ export interface Report extends Entity{
   reason: any;
   status: string;
 }
+
+export interface ReportUpdateDTO{
+  reportId: string;
+  status:  string;
+}
 @Injectable({
   providedIn: 'root'
 })
@@ -50,9 +55,9 @@ export class ReportsService {
     );
   }
 
-  updateReport(data : {postId : string, reason: string}){
-    const url = environment.api_url + '/reports/put';
-    return this.http.put(url, data, {context: checkToken()}).pipe(
+  updateReport(data : ReportUpdateDTO){
+    const url = environment.api_url + '/reports/update';
+    return this.http.put<ApiResponse<Report>>(url, data, {context: checkToken()}).pipe(
        tap({
         next: (response) => {
           this.notification.showSuccessNotification('Reporte actualizado con éxito');

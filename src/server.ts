@@ -6,24 +6,44 @@ import {
 } from '@angular/ssr/node';
 import express from 'express';
 import {join} from 'node:path';
+import {environment} from '@environments/environment.development';
 
 const browserDistFolder = join(import.meta.dirname, '../browser');
 
 const app = express();
 const angularApp = new AngularNodeAppEngine();
 
-/**
- * Example Express Rest API endpoints can be defined here.
- * Uncomment and define endpoints as necessary.
- *
- * Example:
- * ```ts
- * app.get('/api/{*splat}', (req, res) => {
- *   // Handle API request
- * });
- * ```
- */
+const xmlbuilder = require('xmlbuilder');
 
+app.get('/robots.txt' );
+
+// ...en la configuración del servidor Express
+app.get('/sitemap.xml', async (req, res) => {
+  try {
+    const staticRoutes = ['/', '/login', '/register'];
+   // const dynamicUrls = await getDynamicUrlsFromDatabase(); // Función para obtener URLs de tu DB
+    const dynamicUrls = ['/forum/view/me-perdi/1/10']
+    const urls = [...staticRoutes, ...dynamicUrls];
+
+    const root = xmlbuilder.create('urlset', { version: '1.0', encoding: 'UTF-8' });
+    root.att('xmlns', 'http://www.sitemaps.org/schemas/sitemap/0.9');
+
+    urls.forEach(url => {
+      const urlNode = root.ele('url');
+      urlNode.ele('loc', `${environment.public_url}${url}`);
+      urlNode.ele('changefreq', 'yearly');
+      urlNode.ele('priority', '0.7');
+    });
+
+    const xml = root.end({ pretty: true });
+    res.header('Content-Type', 'application/xml');
+    res.send(xml);
+
+  } catch (error) {
+    console.error('Error generating sitemap:', error);
+    res.status(500).send('Error generating sitemap');
+  }
+});
 /**
  * Serve static files from /browser
  */

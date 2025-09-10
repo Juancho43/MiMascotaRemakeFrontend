@@ -1,8 +1,10 @@
-import {Component, inject} from '@angular/core';
+import {Component, inject, OnDestroy} from '@angular/core';
 import {Router, RouterLink} from '@angular/router';
 import {Session} from '@services/utils/session';
 import {FormControl, FormGroup, ReactiveFormsModule, Validators} from '@angular/forms';
 import {LoginData} from '@model/auth/LoginData';
+import {MetaTagsService} from '@services/utils/meta-tags.service';
+import {CanonicalUrlService} from '@services/utils/canonical-url.service';
 
 
 @Component({
@@ -14,13 +16,24 @@ import {LoginData} from '@model/auth/LoginData';
   templateUrl: './login.html',
   styleUrl: './login.scss'
 })
-export default class Login {
+export default class Login implements OnDestroy{
+  private metadata = inject(MetaTagsService);
+  private canonical = inject(CanonicalUrlService);
   private service = inject(Session);
   private router = inject(Router);
   loginForm = new FormGroup({
     email: new FormControl('', [Validators.required, Validators.email]),
     password: new FormControl('', [Validators.required, Validators.minLength(6)])
   })
+
+  constructor() {
+    this.canonical.setCanonicalLink();
+    this.metadata.addTitle('Red Social - MiMascota - Inicio Sesión');
+  }
+
+  ngOnDestroy(): void {
+        this.metadata.defaultMetaTags();
+    }
 
   submitForm(){
     this.service.login(this.getLoginData());
@@ -33,6 +46,7 @@ export default class Login {
       password: this.loginForm.get('password')?.value || ''
     }
   }
+
   showPassword()
   {
 

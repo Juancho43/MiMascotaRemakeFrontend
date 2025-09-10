@@ -5,6 +5,8 @@ import {HomeButton} from '@app/components/shared/home-button/home-button';
 import {AuthService} from '@http/auth.service';
 import {UserContext} from '@services/context/user-contenxt';
 import {rxResource} from '@angular/core/rxjs-interop';
+import {User} from '@model/auth/User';
+
 
 @Component({
   selector: 'app-forum-page',
@@ -17,6 +19,7 @@ import {rxResource} from '@angular/core/rxjs-interop';
   styleUrl: './forum-page.scss'
 })
 export default class ForumPage {
+
   private auth = inject(AuthService);
   private userContext = inject(UserContext);
   userResource = rxResource({
@@ -26,9 +29,12 @@ export default class ForumPage {
   constructor() {
     effect(()=>{
       if (!this.userResource.isLoading() && !this.userResource.error()){
-        this.userContext.setUser(this.userResource.value()!.data!);
+        const user = this.userResource.value()!.data ?? {id: ''} as User;
+        this.userContext.setUser(user);
       }
     });
+
+
   }
 
 

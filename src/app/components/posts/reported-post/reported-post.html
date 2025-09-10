@@ -35,17 +35,20 @@
       <button
         class="btn btn-validate"
         (click)="onValidate()"
-        [disabled]="report.status !== 'Pending'">
+        [disabled]="report.status
+        === 'Pending' || report.status !=='Dismissed' ">
         <span class="icon">✓</span>
         Validar
       </button>
       <button
         class="btn btn-cancel"
         (click)="onCancel()"
-        [disabled]="report.status !== 'Pending'">
+        [disabled]=" report.status === 'Dismissed'"
+      >
         <span class="icon">✗</span>
         Cancelar
       </button>
+
     </div>
   </div>
 </div>

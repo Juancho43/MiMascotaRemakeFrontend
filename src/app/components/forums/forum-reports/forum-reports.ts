@@ -1,7 +1,8 @@
 import {Component, inject, input} from '@angular/core';
-import {ReportsService} from '@http/reports-service';
+import {ReportsService, ReportUpdateDTO} from '@http/reports-service';
 import {rxResource} from '@angular/core/rxjs-interop';
 import {ReportedPost} from '@app/components/posts/reported-post/reported-post';
+
 
 @Component({
   selector: 'app-forum-reports',
@@ -31,4 +32,14 @@ export default class ForumReports {
       limit:params.limit
     })
   })
+  handleResult(data : ReportUpdateDTO)
+  {
+    this.service.updateReport(data).subscribe(
+      res =>{
+        if (res.success) this.reportsResource.reload();
+      }
+    );
+  }
+
+
 }
